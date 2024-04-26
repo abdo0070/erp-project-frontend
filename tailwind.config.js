@@ -13,6 +13,7 @@ module.exports = {
         'neon-blue': '#2FB8FF',
         'footer-header' : '#4388D9',
         'blue' : '#0241BB',
+        'soft-gray' : '#F6EDED',
       },
       backgroundImage: {
         'job-bg': "url('/public/img/notebook.jpeg')",

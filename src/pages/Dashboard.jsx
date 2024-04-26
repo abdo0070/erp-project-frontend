@@ -1,16 +1,17 @@
-import React from 'react'
-import Footer from '../components/Footer'
-import HeaderDashboard from '../components/HeaderDashboard'
-import FindJobDashboard from '../components/FindJobDashboard'
+import React from "react";
+import Footer from "../components/Footer";
+import HeaderDashboard from "../components/HeaderDashboard";
+import FindJobDashboard from "../components/FindJobDashboard";
 
 const Dashboard = () => {
   return (
-    <div className='bg-job-bg bg-repeat : bg-no-repeat bg : bg-cover h-svh'>
-    <HeaderDashboard />
-    <FindJobDashboard />
-    <Footer />
-    </div>
-    )
-}
+    <>
+      <div className="min-h-screen bg-job-bg bg-no-repeat bg-center bg-cover">
+        <HeaderDashboard />
+        <FindJobDashboard />
+      </div>
+    </>
+  );
+};
 
-export default Dashboard
+export default Dashboard;
