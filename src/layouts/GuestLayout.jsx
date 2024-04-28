@@ -1,9 +1,12 @@
-import React from 'react'
+import Dashboard from "../pages/Dashboard";
 
 const GuestLayout = () => {
+  
   return (
-    <div>GuestLayout</div>
-  )
-}
+    <div className="min-h-screen w-full bg-soft-gray">
+      <Dashboard />
+    </div>
+  );
+};
 
-export default GuestLayout
+export default GuestLayout;

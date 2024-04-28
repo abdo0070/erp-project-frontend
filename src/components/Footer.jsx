@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className="md:h-44 min-h-fit max-h-full  w-full bg-footer-header flex justify-center">
+    <div className="md:h-44 min-h-fit  w-full bg-footer-header flex justify-center">
       <div className="w-10/12 h-full p-2 flex justify-between items-center g-3 md:g-5">
         {/**LOGO & CONTACT SECTION */}
         <div className="h-full flex flex-col gap-2">

@@ -1,9 +1,19 @@
-import React from 'react'
+import React from "react";
+import { Outlet } from "react-router-dom";
+import GuestHeader from "../components/guest/GuestHeader";
 
 const UserLayout = () => {
+  
   return (
-    <div>UserLayout</div>
-  )
-}
+    <>
+      <div className="bg-soft-gray">
+        <GuestHeader />
+        <div className="min-h-screen w-10/12 m-auto">
+          <Outlet />
+        </div>
+      </div>
+    </>
+  );
+};
 
-export default UserLayout
+export default UserLayout;
