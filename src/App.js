@@ -9,7 +9,7 @@ function App() {
   if (role == 1) {
     return <UserLayout />;
   } else if (role == 2) {
-    <CompanyLayout />;
+    return <CompanyLayout />;
   }
   return <GuestLayout />;
 }

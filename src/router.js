@@ -3,9 +3,14 @@ import App from "./App";
 import UserProfile from "./components/user/UserProfile";
 import NotFound from "./pages/NotFound";
 import UserLogin from "./pages/UserLogin";
-import Applications from "./components/Applications";
+import Applications from "./components//user/Applications";
 import Cvs from "./components/Cvs";
 import CvReview from "./components/CvReview";
+import PostsIndex from "./components/company/PostsIndex";
+import PostNew from "./components/company/PostNew";
+import CompanyProfile from "./components/company/CompanyProfile";
+import Jobs from "./components/user/Jobs";
+import SingleJob from "./components/user/SingleJob";
 
 export const router = createBrowserRouter([
   {
@@ -16,6 +21,7 @@ export const router = createBrowserRouter([
     path: "/home",
     element: <App />,
   },
+  // FOR USER
   {
     path: "/user",
     element: <App />,
@@ -29,6 +35,14 @@ export const router = createBrowserRouter([
         element : <Applications />
       },
       {
+        path : "jobs",
+        element : <Jobs />
+      },
+      {
+        path : "jobs/:jobId",
+        element : <SingleJob />
+      },
+      {
         path : "cv",
         element : <Cvs />
       },
@@ -38,6 +52,26 @@ export const router = createBrowserRouter([
       },
     ],
     
+  },
+  // FOR COMPANY
+  {
+
+    path : "company",
+    element : <App />,
+    children : [
+      {
+        path : "posts",
+        element : <PostsIndex />
+      },
+      {
+        path : "posts/new",
+        element : <PostNew />
+      },
+      {
+        path : "profile",
+        element : <CompanyProfile />
+      },
+    ]
   },
   {
     path: "/login",
