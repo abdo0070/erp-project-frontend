@@ -3,8 +3,12 @@ import { Link } from "react-router-dom";
 
 const Job = ({ post }) => {
   const { name, image, title, career_level, address, age, skills } = post;
-  useEffect(() => {});
-  const handleOnClick = () => {};
+  useEffect(() => {
+    
+  });
+  const handleOnClick = () => {
+
+  };
 
   return (
     <Link to={"/user/jobs/1"}>

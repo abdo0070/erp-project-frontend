@@ -5,7 +5,10 @@ import "./style.css";
 import UserLayout from "./layouts/UserLayout";
 import CompanyLayout from "./layouts/CompanyLayout";
 function App() {
-  const { role } = useContext(AuthContext);
+  const { role, refreshToken } = useContext(AuthContext);
+  useEffect(() => {
+    // refreshToken();
+  },[]);
   if (role == 1) {
     return <UserLayout />;
   } else if (role == 2) {

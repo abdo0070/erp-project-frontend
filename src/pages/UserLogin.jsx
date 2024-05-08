@@ -1,8 +1,39 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import UserHeader from "../components/guest/GuestHeader";
-import Footer from "../components/Footer";
+import { AuthContext } from "../context/AuthContext";
+import { axiosAPI } from "../api/axiosAPI";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const UserLogin = () => {
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const { user, updateUser, role } = useContext(AuthContext);
+  const navigate = useNavigate();
+  useEffect(() => {
+  }, []);
+  const handleLogin = async () => {
+    // make the http request fot the login
+    try {
+      const res = await axiosAPI.post(
+        "/users/login",
+        { email, password },
+        {
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        }
+      );
+      console.log();
+      updateUser(res.data.token, res.data.role || 1);
+      navigate("/");
+    } catch (error) {
+      Swal.fire({
+        title: "Error!",
+        text: "Wrong Password",
+        icon: "error",
+        confirmButtonText: "Try Again",
+      });
+    }
+  };
   return (
     <div className="w-full h-screen bg-white">
       <UserHeader />
@@ -22,6 +53,7 @@ const UserLogin = () => {
                 type="email"
                 className="rounded-md w-full p-1 focus:border-sky-700  border-2"
                 placeholder="Enter your email"
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div className="w-full flex flex-col font-sans">
@@ -32,28 +64,28 @@ const UserLogin = () => {
                 type="password"
                 className="rounded-md w-full  focus:border-sky-700  border-2 p-1"
                 placeholder="Enter your password"
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-
             <div className="w-full flex flex-col font-sans">
               <input
                 type="submit"
                 className="rounded-md w-full  bg-blue  p-2 text-white font-bold "
                 value={"Login now"}
+                onClick={handleLogin}
               />
             </div>
             <div className="w-full flex flex-col items-center font-sans font-semibold text-sm md:text-lg">
               <h2>
                 Don't have an account ?{" "}
-                <a href="" className="text-blue">
+                <Link href="" className="text-blue">
                   Sign Up{" "}
-                </a>
+                </Link>
               </h2>
             </div>
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

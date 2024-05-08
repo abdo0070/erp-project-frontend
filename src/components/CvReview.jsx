@@ -1,26 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
+import { axiosAPI } from "../api/axiosAPI";
 
 const CvReview = () => {
   const { userId } = useParams();
   const [display, setDiplay] = useState(false);
-  const user = {
-    name: "Ahmed",
-    image: "/img/user.png",
-    title: "Junior Full-stack Developer (React.js + PHP)",
-    skills: ["React.js", "PHP", "OOP", "Express.js", "Node.js", "HTMl", "JS"],
-    career_level: "Junior",
-    age: 20,
-    address: "Cairo",
-    description:
-      " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae cupiditate quis, culpa in ex, tempore vel ratione odio magni ad harum cum velit dolorum reprehenderit officia maiores porro asperiores quae?",
-    cv_link: "cv_link",
-    phone: "+201115907072",
-    email: "abdallammdouh6@gmail.com",
-  };
+  const [user, setUser] = useState({});
+  // AUTH
+  const { token, refreshToken } = useContext(AuthContext);
   useEffect(() => {
-    // Get the user by USERID
-  });
+    // FETCH USER DATA
+    axiosAPI
+      .get(`/users/6633763ed4e5df9212cb340e`, {
+        headers: {
+          Authorization:
+            "Bearer " +
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoie1wiX2lkXCI6XCI2NjMzNzYzZWQ0ZTVkZjkyMTJjYjM0MGVcIixcIm5hbWVcIjpcImFiZGFsbGFcIixcImVtYWlsXCI6XCJhYmRhbGxhQGdtYWlsLmNvbVwiLFwicGFzc3dvcmRcIjpcIjEyM1wiLFwidGl0bGVcIjpcInNvZnR3YXJlIGVuZ2luZWVyXCIsXCJhZGRyZXNzXCI6XCJhZ3V6YSAsIGdpemFcIixcInNraWxsc1wiOltdLFwiX192XCI6MH0iLCJpYXQiOjE3MTUwOTIyMjIsImV4cCI6MTcxNTA5NTgyMn0.Jg222AGHmPq3PZf5n1jQg9GXL3iWKxGTbvcD3sKyVu0",
+        },
+      })
+      .then((res) => {
+        setUser(res.data?.data);
+        console.log(user);
+      })
+      .catch((err) => refreshToken());
+  }, []);
   return (
     <div className="h-fit w-full flex-row  space-y-4">
       {/** MAIN DETAILS SECTION */}
@@ -29,21 +33,21 @@ const CvReview = () => {
         <div className="w-fit flex flex-col items-center p-1">
           <img
             className="w-14 h-14 sm:w-20 sm:h-20 md:w-28 md:h-28 rounded-full"
-            src={user.image}
+            src={user?.image}
             alt=""
           />
           <h2 className="font-bold text-slate-700 text-xs sm:text-base rounded-xl">
-            {user.name}
+            {user?.name}
           </h2>
         </div>
         <div className="w-10/12 flex flex-col p-2">
           <h2 className="text-blue text-xs sm:text-lg md:text-2xl font-bold">
-            {user.title}
+            {user?.title}
           </h2>
           <div className="flex text-gray-600 flex-col text-[10px] md:text-base font-medium rounded-xl">
-            <span>Career-level : {user.career_level}</span>
-            <span>Location : {user.address}</span>
-            <span>Age : {user.age} years</span>
+            <span>Career-level : {user?.career_level}</span>
+            <span>Location : {user?.address}</span>
+            <span>Age : {user?.age} years</span>
           </div>
         </div>
         <div className="flex items-start mt-2 mr-1.5 sm:mr-3">
@@ -62,7 +66,7 @@ const CvReview = () => {
           <object
             data="/cv.pdf"
             type="application/pdf"
-           className="w-full h-screen"
+            className="w-full h-screen"
           >
             <p>
               Your web browser doesn't have a PDF plugin.
@@ -77,7 +81,7 @@ const CvReview = () => {
           Description
         </h2>
         <p className="bg-soft-gray p-1 md:p-2 rounded-2xl sm:text-sm md:text-lg text-[10px] font-serif">
-          {user.description}
+          {user?.description}
         </p>
       </div>
 
@@ -87,7 +91,7 @@ const CvReview = () => {
           SKILLS
         </h2>
         <div className="flex flex-row w-full">
-          {user.skills?.map((s) => {
+          {user?.skills?.map((s) => {
             return (
               <button className="p-1 text-white m-0.5 font-medium text-[10px] rounded-lg bg-blue">
                 {s}
@@ -105,13 +109,13 @@ const CvReview = () => {
         <h2 className="p-1 text-xs sm:text-sm font-semibold">
           Phone Number :
           <span className="sm:text-sm text-[10px] font-extralight">
-            {user.phone}
+            {user?.phone}
           </span>
         </h2>
         <h2 className="p-1 text-xs sm:text-sm font-semibold">
           Email :
           <span className="sm:text-sm text-[10px] font-extralight">
-            {user.email}
+            {user?.email}
           </span>
         </h2>
       </div>

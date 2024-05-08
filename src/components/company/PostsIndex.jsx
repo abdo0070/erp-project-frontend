@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const PostsIndex = () => {
+  useEffect(() => {
+    // fetch the postedJobs from the backend
+  })
   const data = [
     {
       id: 1,

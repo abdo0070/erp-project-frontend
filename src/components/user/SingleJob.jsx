@@ -2,23 +2,25 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 const SingleJob = () => {
-    const [display, setDiplay] = useState(false);
+  const [display, setDiplay] = useState(false);
 
   const post = {
-    name: "Jo",
+    id: 1,
+    company_name: "Jo",
     image: "/img/user.png",
     title: "Junior Full-stack Developer (React.js + PHP)",
     skills: ["React.js", "PHP", "OOP", "Express.js", "Node.js", "HTMl", "JS"],
     career_level: "Junior",
     description:
-    " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae cupiditate quis, culpa in ex, tempore vel ratione odio magni ad harum cum velit dolorum reprehenderit officia maiores porro asperiores quae?",
-    age: 20,
+      " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae cupiditate quis, culpa in ex, tempore vel ratione odio magni ad harum cum velit dolorum reprehenderit officia maiores porro asperiores quae?",
     address: "Cairo",
+    expected_salary: 2000,
+    job_type: "Remote",
+    post_date: "20-02-2024",
   };
-
   useEffect(() => {
     // fetch post job by job_id from the api
-  },[]);
+  }, []);
 
   const { jobId } = useParams();
   return (
@@ -33,17 +35,16 @@ const SingleJob = () => {
             alt=""
           />
           <h2 className="font-bold text-slate-700 text-xs sm:text-base rounded-xl">
-            {post.name}
+            {post.company_name}
           </h2>
         </div>
         <div className="w-10/12 flex flex-col p-2">
           <h2 className="text-blue text-xs sm:text-lg md:text-2xl font-bold">
             {post.title}
           </h2>
-          <div className="flex text-gray-600 flex-col text-[10px] md:text-base font-medium rounded-xl">
-            <span>Career-level : {post.career_level}</span>
-            <span>Location : {post.address}</span>
-            <span>Age : {post.age} years</span>
+          <div className="flex text-gray-600 mt-1 flex-col text-[10px] md:text-base font-medium rounded-xl">
+            <span>23 Applications | 4 Viewed </span>
+            <span>posted at : {post.post_date}</span>
           </div>
         </div>
         <div className="flex items-start mt-2 mr-1.5 sm:mr-3">
@@ -71,6 +72,19 @@ const SingleJob = () => {
           </object>
         )}
       </div>
+
+      {/**INFO */}
+      <div className="bg-white p-1 md:p-4 rounded-xl">
+        <h2 className="font-bold text-blue text-[14px] sm:text-base md:text-xl">
+          JOB INFO
+        </h2>
+        <div className="flex text-gray-800 flex-col text-sm md:text-base font-medium rounded-xl">
+          <span>Career-level : {post.career_level}</span>
+          <span>Location : {post.address}</span>
+          <span>Job Type : {post.job_type} </span>
+        </div>
+      </div>
+
       {/** DESCRIPTION SECTION SECTION */}
       <div className="bg-white w-full h-fit p-1 md:p-4 rounded-xl">
         <h2 className="p-1 font-bold text-blue text-[14px] sm:text-base md:text-xl">
