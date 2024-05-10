@@ -22,7 +22,7 @@ const UserLogin = () => {
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
         }
       );
-      console.log();
+      console.log(res.data.token);
       updateUser(res.data.token, res.data.role || 1);
       navigate("/");
     } catch (error) {
@@ -32,6 +32,7 @@ const UserLogin = () => {
         icon: "error",
         confirmButtonText: "Try Again",
       });
+      console.log(error);
     }
   };
   return (
@@ -44,6 +45,7 @@ const UserLogin = () => {
               Login to your account
             </h2>
           </div>
+          
           <div className="flex flex-col gap-4">
             <div className="w-full flex flex-col font-sans">
               <label htmlFor="" className="p-1 font-medium">
@@ -75,8 +77,8 @@ const UserLogin = () => {
                 onClick={handleLogin}
               />
             </div>
-            <div className="w-full flex flex-col items-center font-sans font-semibold text-sm md:text-lg">
-              <h2>
+            <div className="w-full flex flex-col items-center font-sans font-bold text-sm md:text-lg">
+              <h2>-semib
                 Don't have an account ?{" "}
                 <Link href="" className="text-blue">
                   Sign Up{" "}

@@ -11,6 +11,7 @@ import PostNew from "./components/company/PostNew";
 import CompanyProfile from "./components/company/CompanyProfile";
 import Jobs from "./components/user/Jobs";
 import SingleJob from "./components/user/SingleJob";
+import UserRegister from "./pages/UserRegister";
 
 export const router = createBrowserRouter([
   {
@@ -79,7 +80,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "/register",
-    element: <UserLogin />,
+    element: <UserRegister />,
   },
   {
     path: "*",

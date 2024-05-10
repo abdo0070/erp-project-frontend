@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import UserMenu from "./UserMenu";
 
 const UserHeader = () => {
   const handleJobSearch = (e) => {
@@ -40,10 +41,12 @@ const UserHeader = () => {
             />
           </form>
         </div>
+        {/** PROFILE ICON */}
         <div className="h-full flex items-center gap-2 text-white text-lg md:text-2xl">
-          <button>
+          {/* <button>
             <i className="fa-solid fa-user"></i>
-          </button>
+          </button> */}
+          <UserMenu />
         </div>
       </div>
     </div>

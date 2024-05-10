@@ -14,14 +14,11 @@ const CvReview = () => {
     axiosAPI
       .get(`/users/6633763ed4e5df9212cb340e`, {
         headers: {
-          Authorization:
-            "Bearer " +
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoie1wiX2lkXCI6XCI2NjMzNzYzZWQ0ZTVkZjkyMTJjYjM0MGVcIixcIm5hbWVcIjpcImFiZGFsbGFcIixcImVtYWlsXCI6XCJhYmRhbGxhQGdtYWlsLmNvbVwiLFwicGFzc3dvcmRcIjpcIjEyM1wiLFwidGl0bGVcIjpcInNvZnR3YXJlIGVuZ2luZWVyXCIsXCJhZGRyZXNzXCI6XCJhZ3V6YSAsIGdpemFcIixcInNraWxsc1wiOltdLFwiX192XCI6MH0iLCJpYXQiOjE3MTUwOTIyMjIsImV4cCI6MTcxNTA5NTgyMn0.Jg222AGHmPq3PZf5n1jQg9GXL3iWKxGTbvcD3sKyVu0",
+          Authorization: "Bearer " + token,
         },
       })
       .then((res) => {
         setUser(res.data?.data);
-        console.log(user);
       })
       .catch((err) => refreshToken());
   }, []);
