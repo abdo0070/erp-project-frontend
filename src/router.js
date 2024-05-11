@@ -12,6 +12,8 @@ import CompanyProfile from "./components/company/CompanyProfile";
 import Jobs from "./components/user/Jobs";
 import SingleJob from "./components/user/SingleJob";
 import UserRegister from "./pages/UserRegister";
+import CompanyRegister from './pages/CompanyRegister';
+import CompanyLogin from "./pages/CompanyLogin";
 
 export const router = createBrowserRouter([
   {
@@ -34,6 +36,10 @@ export const router = createBrowserRouter([
       {
         path : "applications",
         element : <Applications />
+      },
+      {
+        path : "",
+        element : <Jobs />
       },
       {
         path : "jobs",
@@ -81,6 +87,14 @@ export const router = createBrowserRouter([
   {
     path: "/register",
     element: <UserRegister />,
+  },
+  {
+    path: "/company/login",
+    element: <CompanyLogin />,
+  },
+  {
+    path: "/company/register",
+    element: <CompanyRegister />,
   },
   {
     path: "*",

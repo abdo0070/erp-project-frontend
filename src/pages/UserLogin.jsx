@@ -78,7 +78,7 @@ const UserLogin = () => {
               />
             </div>
             <div className="w-full flex flex-col items-center font-sans font-bold text-sm md:text-lg">
-              <h2>-semib
+              <h2>
                 Don't have an account ?{" "}
                 <Link href="" className="text-blue">
                   Sign Up{" "}

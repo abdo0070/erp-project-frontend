@@ -6,7 +6,7 @@ const GuestLayout = () => {
   const {refreshToken} = useContext(AuthContext);
   useEffect(() => {
     refreshToken();
-  })
+  },[])
   return (
     <div className="min-h-screen w-full bg-soft-gray">
       <Dashboard />

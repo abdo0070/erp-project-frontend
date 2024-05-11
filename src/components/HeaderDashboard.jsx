@@ -24,6 +24,8 @@ const HeaderDashboard = () => {
           </div>
         </div>
         <div className="h-full flex items-center gap-2 text-white text-xs md:text-base">
+          <Link to={"/company/login"} className="font-semibold  md:text-lg">as company</Link>
+          <div className="text-white h-full border-l-2 border-white "></div>
           <Link
             to={"/login"}
             className="bg-blue font-semibold p-0.5 sm:p-1"

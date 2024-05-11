@@ -1,12 +1,12 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
-import GuestHeader from "../components/guest/GuestHeader";
+import UserHeader from '../components/user/UserHeader';
 
 const CompanyLayout = () => {
   return (
     <>
       <div className="bg-soft-gray">
-        <GuestHeader />
+        <UserHeader />
         <div className="min-h-screen w-10/12 m-auto">
           <Outlet />
         </div>

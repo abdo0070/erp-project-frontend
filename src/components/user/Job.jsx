@@ -36,9 +36,9 @@ const Job = ({ post }) => {
           </div>
 
           <div className="flex flex-row w-full">
-            {skills?.map((s) => {
+            {skills?.map((s,i) => {
               return (
-                <button className="p-1 text-white m-0.5 lg:p-2 font-medium text-[10px] rounded-lg bg-blue">
+                <button key={i} className="p-1 text-white m-0.5 lg:p-2 font-medium text-[10px] rounded-lg bg-blue">
                   {s}
                 </button>
               );

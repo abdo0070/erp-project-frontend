@@ -48,6 +48,9 @@ const Application = ({ post }) => {
           </button>
         </div>
       </div>
+
+
+      
     </div>
   );
 };

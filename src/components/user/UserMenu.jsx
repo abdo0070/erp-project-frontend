@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const UserMenu = () => {
   const { updateUser } = useContext(AuthContext);
@@ -8,11 +9,11 @@ const UserMenu = () => {
   const items = [
     {
       title: "Settings",
-      icon: <i class="fa-solid fa-gear"></i>,
+      icon: <i className="fa-solid fa-gear"></i>,
     },
     {
       title: "Logout",
-      icon: <i class="fa-solid fa-right-from-bracket"></i>,
+      icon: <i className="fa-solid fa-right-from-bracket"></i>,
     },
   ];
 
@@ -53,22 +54,21 @@ const UserMenu = () => {
 
         {isOpen && (
           <div className="origin-top-right absolute right-0 mt-2 w-44 rounded-lg shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-            <ul
-              role="menu"
-              aria-orientation="vertical"
-              aria-labelledby="options-menu"
-            >
-              {items?.map((item, i) => {
-                return (
-                  <li
-                    className="flex flex-row justify-between items-center px-4 py-2 w-full text-sm text-left text-gray-700 hover:bg-gray-100"
-                    onClick={handleLogout}
-                  >
-                    <button href="#">{item.title}</button>
-                    {item.icon}
-                  </li>
-                );
-              })}
+            <ul aria-orientation="vertical" aria-labelledby="options-menu">
+              <Link
+                to={"/user/profile"}
+                className="flex flex-row justify-between items-center px-4 py-2 w-full text-sm text-left text-gray-700 hover:bg-gray-100"
+              >
+                <button href="#">Settings</button>
+                <i className="fa-solid fa-gear"></i>{" "}
+              </Link>
+              <li
+                onClick={handleLogout}
+                className="flex flex-row justify-between items-center px-4 py-2 w-full text-sm text-left text-gray-700 hover:bg-gray-100"
+              >
+                <button>Logout</button>
+                <i className="fa-solid fa-right-from-bracket"></i>
+              </li>
             </ul>
           </div>
         )}

@@ -3,18 +3,26 @@ import { isExpired, decodeToken } from "react-jwt";
 
 export const AuthContext = createContext();
 export const AuthProvidor = ({ children }) => {
-  const [user, setUser] = useState({ name: "abdalla" });
+  const [user, setUser] = useState(localStorage.getItem("user"));
   const [role, setRole] = useState(localStorage.getItem("role") || 0);
   const [token, setToken] = useState(localStorage.getItem("token") || null);
 
   const updateUser = (newToken, newRole) => {
-    const userDecodedToken = decodeToken(newToken);
+    let userDecodedToken = decodeToken(newToken);
     const isExp = isExpired(newToken);
     setUser(userDecodedToken);
     setToken(newToken);
     localStorage.setItem("token", newToken);
     localStorage.setItem("role", newRole || 0);
     setRole(newRole || 0);
+    // SAVE THE USER DATA
+    if (!userDecodedToken) {
+      return;
+    }
+    userDecodedToken = JSON.parse(userDecodedToken?.data);
+    setUser(userDecodedToken);
+    console.log(user);
+    localStorage.setItem("user",userDecodedToken);
   };
 
   const refreshToken = () => {

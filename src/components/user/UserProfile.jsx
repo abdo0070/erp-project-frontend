@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 const UserProfile = () => {
+  const {user} = useContext(AuthContext);
+  const {open , setOpen} = useState(true);
+  useEffect(() => {
+    console.log(user)
+  } , []); 
   return (
-    <div className="flex items-center flex-row justify-between h-screen w-full">
+    <>
+    {
+      open ? (<div className="flex items-center flex-row justify-between h-screen w-full">
       {/**SIDEBARE**/}
       <div className="h-full w-3/12 text-black font-semibold mt-8">
         <div className="w-full bg-white border-2 p-1 border-black">INFO</div>
@@ -14,31 +22,31 @@ const UserProfile = () => {
         <div className="">
           <h2 className="font-bold pl-1">Email</h2>
           <h2 className="w-full border-2 border-[#CACED8] rounded-md p-1 bg-white">
-            abdallammdouh6@gmail.com
+          {user?.email}
           </h2>
         </div>
         <div className="">
           <h2 className="font-bold pl-1">Title</h2>
           <h2 className="w-full border-2 border-[#CACED8] rounded-md p-1 bg-white">
-            fullstack web developer
+            {user?.title}
           </h2>
         </div>
         <div className="">
           <h2 className="font-bold pl-1">Phone Number</h2>
           <h2 className="w-full border-2 border-[#CACED8] rounded-md p-1 bg-white">
-            01115907072
+            {user?.phone || "No Contact phone no."}
           </h2>
         </div>
         <div className="">
           <h2 className="font-bold pl-1">Education</h2>
           <h2 className="w-full border-2 border-[#CACED8] rounded-md p-1 bg-white">
-            faculty of computer science ain shams university
+            {user?.education || "Unkown"}
           </h2>
         </div>
         <div className="">
           <h2 className="font-bold pl-1">Address</h2>
           <h2 className="w-full border-2 border-[#CACED8] rounded-md p-1 bg-white">
-            Giza , Egypt
+            {user?.address}
           </h2>
         </div>
         <div className="">
@@ -51,7 +59,43 @@ const UserProfile = () => {
           <button className="w-full p-2 bg-blue font-bold text-white rounded-sm">UPDATE</button>
         </div>
       </div>
-    </div>
+    </div>) : (
+     
+     <div className="w-10/12 flex flex-row">
+     <div className="w-full flex flex-col">
+       <h2 className="text-blue font-semibold">{user?.title}</h2>
+       {/* DETAILS */}
+       <div className="flex text-gray-600 flex-col text-[8px] font-medium">
+         <span>Career-level : {user?.career_level}</span>
+         <span>Age : {user?.age} years</span>
+       </div>
+
+       <div className="flex flex-row w-full">
+         {
+         user?.skills?.map((s) => {
+           return (
+             <button className="p-1 text-white m-0.5 font-medium text-[10px] rounded-lg bg-blue">
+               {s}
+             </button>
+           );
+         })}
+       </div>
+     </div>
+
+     <div>
+       <button
+         href="/cv_preview.html"
+         className="text-xs text-center md:text-lg whitespace-nowrap text-white font-bold rounded-sm p-1 md:p-2 md:w-32 bg-green-500"
+       >
+         VIEWED
+       </button>
+     </div>
+   </div>
+
+
+    )
+    }
+    </>
   );
 };
 
