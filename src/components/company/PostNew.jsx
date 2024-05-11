@@ -1,32 +1,51 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { axiosAPI } from "../../api/axiosAPI";
+import { AuthContext } from "../../context/AuthContext";
 
 const PostNew = () => {
+  const { token, user } = useContext(AuthContext);
+  // POST VARIABLES
   const [jobTitle, setJobTitle] = useState("");
   const [expectedSalary, setExpectedSalary] = useState("");
   const [careerLevel, setCareerLevel] = useState("");
   const [postTime, setPostTime] = useState("");
   const [jobLocation, setJobLocation] = useState("");
   const [jobType, setJobType] = useState("");
-
-  const handleSubmit = (e) => {
+  const [skills, setSkills] = useState([]);
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Create a new post object with the form data
+    // ADD VALIDATE TO THE FORM
+    const id = JSON.parse(user)._id;
+    console.log(id);
     const newPost = {
-      jobTitle,
-      expectedSalary,
-      careerLevel,
-      postTime,
-      jobLocation,
-      jobType,
+      title: jobTitle,
+      expected_salary: expectedSalary,
+      career_level: careerLevel,
+      location: jobLocation,
+      job_type: jobType,
+      company_id: id,
+      skills: ["Word", "Computer skills", "Exceel", "Good English"],
     };
-    // Pass the new post object to the onSubmit prop function
-    // Clear the form fields after submission
-    setJobTitle("");
-    setExpectedSalary("");
-    setCareerLevel("");
-    setPostTime("");
-    setJobLocation("");
-    setJobType("");
+
+    try {
+      const res = await axiosAPI.post("/jobs", newPost, {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          Authorization: "Bearer " + token,
+        },
+      });
+      // MAKE ALERT THE THE JOB IS ADDED SUCCESSFULY
+      alert("SUCCESS");
+      setJobTitle("");
+      setExpectedSalary("");
+      setCareerLevel("");
+      setPostTime("");
+      setJobLocation("");
+      setJobType("");
+    } catch (error) {
+      alert("SOMETHING WENT WRONG");
+    }
   };
 
   return (
@@ -86,7 +105,7 @@ const PostNew = () => {
           <option value="Senior Level">Senior</option>
         </select>
       </div>
-      
+
       <div className="mb-4">
         <label
           htmlFor="jobLocation"

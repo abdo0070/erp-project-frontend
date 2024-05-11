@@ -1,52 +1,36 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { axiosAPI } from "../../api/axiosAPI";
+import { AuthContext } from "../../context/AuthContext";
+import Swal from "sweetalert2";
 
 const PostsIndex = () => {
+  const { token, user } = useContext(AuthContext);
+  const [posts, setPosts] = useState([]);
   useEffect(() => {
-    // fetch the postedJobs from the backend
-  })
-  const data = [
-    {
-      id: 1,
-      title: "Junior fullstack developer",
-      expectedSalary: 2000,
-      careerLevel: "Junior",
-      postTime: "20-02-2024",
-      jobLocation: "Cairo",
-      jobType: "Hybird",
-    },
-    {
-      id: 2,
-      title: "Junior fullstack developer",
-      expectedSalary: 2000,
-      careerLevel: "Junior",
-      postTime: "20-02-2024",
-      jobLocation: "Cairo",
-      jobType: "Hybird",
-    },
-    {
-      id: 3,
-      title: "Junior fullstack developer",
-      expectedSalary: 2000,
-      careerLevel: "Junior",
-      postTime: "20-02-2024",
-      jobLocation: "Cairo",
-      jobType: "Hybird",
-    },
-    {
-      id: 4,
-      title: "Junior fullstack developer",
-      expectedSalary: 2000,
-      careerLevel: "Junior",
-      postTime: "20-02-2024",
-      jobLocation: "Cairo",
-      jobType: "Hybird",
-    },
-  ];
+    // fetch the postedJobs from the backend .
+    updatePosts();
+  }, []);
+  const updatePosts = () => {
+    const id = JSON.parse(user)._id;
+    axiosAPI
+      .get(`companies/jobs/${id}`, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then((res) => {
+        setPosts(res.data?.data);
+      })
+      .catch((error) => {});
+  };
   return (
     <div className="flex flex-col h-screen w-full space-y-2">
       <div className="w-full h-fit mt-4 flex justify-end">
-        <Link to={"/company/posts/new"} className="text-sm bg-green-600 p-1 rounded-md text-white font-medium md:p-2">
+        <Link
+          to={"/company/posts/new"}
+          className="text-sm bg-green-600 p-1 rounded-md text-white font-medium md:p-2"
+        >
           NEW JOB POST
         </Link>
       </div>
@@ -100,32 +84,70 @@ const PostsIndex = () => {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200 text-xs md:text-base">
-              {data.map((row, index) => (
+              {posts?.map((row, index) => (
                 <tr
                   key={index}
                   className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}
                 >
                   <td className="p-1 whitespace-nowrap">{row.title}</td>
                   <td className="p-1 whitespace-nowrap">
-                    {row.expectedSalary}
+                    {row.expected_salary} EGP
                   </td>
-                  <td className="p-1 whitespace-nowrap">{row.careerLevel}</td>
-                  <td className="p-1 whitespace-nowrap">{row.postTime}</td>
-                  <td className="p-1 whitespace-nowrap ">{row.jobLocation}</td>
+                  <td className="p-1 whitespace-nowrap">{row.career_level}</td>
+                  <td className="p-1 whitespace-nowrap">
+                    {row.post_date.slice(0, 10)}
+                  </td>
+                  <td className="p-1 whitespace-nowrap ">{row.location}</td>
                   <td className="p-1 whitespace-nowrap text-green-500 font-semibold">
-                    {row.jobType}
+                    {row.job_type}
                   </td>
                   <td className="p-1 whitespace-nowrap">
                     <div className="flex flex-row space-x-0.5 text-blue">
                       <Link>
-                        <i class="fa-solid fa-eye"></i>
+                        <i className="fa-solid fa-eye"></i>
                       </Link>
                       <Link>
-                        <i class="fa-solid fa-pen-to-square"></i>
+                        <i className="fa-solid fa-pen-to-square"></i>
                       </Link>
-                      <Link>
-                        <i class="fa-solid fa-trash-can"></i>
-                      </Link>
+                      <button
+                        onClick={() => {
+                          Swal.fire({
+                            title: "Are you sure?",
+                            text: "You won't be able to revert this!",
+                            icon: "warning",
+                            showCancelButton: true,
+                            confirmButtonColor: "#3085d6",
+                            cancelButtonColor: "#d33",
+                            confirmButtonText: "Yes, delete it!",
+                          }).then((result) => {
+                            if (result.isConfirmed) {
+                              axiosAPI
+                                .delete(`jobs/${row._id}`, {
+                                  headers: {
+                                    Authorization: "Bearer " + token,
+                                  },
+                                })
+                                .then((res) => {
+                                  updatePosts();
+                                  Swal.fire({
+                                    title: "Deleted!",
+                                    text: "Your file has been deleted.",
+                                    icon: "success",
+                                  });
+                                })
+                                .catch((error) => {
+                                  Swal.fire({
+                                    icon: "error",
+                                    title: "Oops...",
+                                    text: "Something went wrong!",
+                                  });
+                                });
+                            }
+                          });
+                        }}
+                      >
+                        <i className="fa-solid fa-trash-can"></i>
+                      </button>
                     </div>
                   </td>
                 </tr>

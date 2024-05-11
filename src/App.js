@@ -8,7 +8,7 @@ function App() {
   const { role, refreshToken } = useContext(AuthContext);
   useEffect(() => {
     // refreshToken();
-  },[]);
+  }, []);
   if (role == 1) {
     return <UserLayout />;
   } else if (role == 2) {

@@ -71,6 +71,10 @@ export const router = createBrowserRouter([
         element : <PostsIndex />
       },
       {
+        path : "",
+        element : <PostsIndex />
+      },
+      {
         path : "posts/new",
         element : <PostNew />
       },
@@ -78,6 +82,7 @@ export const router = createBrowserRouter([
         path : "profile",
         element : <CompanyProfile />
       },
+      
     ]
   },
   {
