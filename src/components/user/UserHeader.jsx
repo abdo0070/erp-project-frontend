@@ -20,6 +20,9 @@ const UserHeader = () => {
             <Link className="" to={"/home"}>
               Home
             </Link>
+            <Link className="" to={"/user/applications"}>
+              My Applications
+            </Link>
             <Link className="" to={"/user/jobs"}>
               Jobs
             </Link>

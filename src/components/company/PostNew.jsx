@@ -59,7 +59,7 @@ const PostNew = () => {
       setError("");
       // Alert success message
       Swal.fire({
-        title: "Deleted!",
+        title: "Done",
         text: "Your file has been added.",
         icon: "success",
       });

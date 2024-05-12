@@ -1,17 +1,16 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { AuthContext } from '../context/AuthContext';
-import { Link, useNavigate } from 'react-router-dom';
-import { axiosAPI } from '../api/axiosAPI';
-import Swal from 'sweetalert2';
-import GuestHeader from '../components/guest/GuestHeader';
+import React, { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../context/AuthContext";
+import { Link, useNavigate } from "react-router-dom";
+import { axiosAPI } from "../api/axiosAPI";
+import Swal from "sweetalert2";
+import GuestHeader from "../components/guest/GuestHeader";
 
 const CompanyLogin = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const { user, updateUser, role } = useContext(AuthContext);
   const navigate = useNavigate();
-  useEffect(() => {
-  }, []);
+  useEffect(() => {}, []);
   const handleLogin = async () => {
     try {
       const res = await axiosAPI.post(
@@ -22,7 +21,7 @@ const CompanyLogin = () => {
         }
       );
       console.log(res.data.token);
-      updateUser(res.data.token, res.data.role || 2);
+      updateUser(res.data.token, res.data.role || 2, res.data.user || null);
       navigate("/");
     } catch (error) {
       Swal.fire({
@@ -44,7 +43,7 @@ const CompanyLogin = () => {
               Login to your account
             </h2>
           </div>
-          
+
           <div className="flex flex-col gap-4">
             <div className="w-full flex flex-col font-sans">
               <label htmlFor="" className="p-1 font-medium">
@@ -78,9 +77,9 @@ const CompanyLogin = () => {
             </div>
             <div className="w-full flex flex-col items-center font-sans font-bold text-sm md:text-lg">
               <h2>
-                Sign up as Company {" "}
+                Sign up as Company{" "}
                 <Link to={"/company/register"} className="text-blue">
-                   Sign Up{" "}
+                  Sign Up{" "}
                 </Link>
               </h2>
             </div>
@@ -91,4 +90,4 @@ const CompanyLogin = () => {
   );
 };
 
-export default CompanyLogin
+export default CompanyLogin;

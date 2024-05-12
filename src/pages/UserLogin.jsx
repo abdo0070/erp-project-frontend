@@ -10,8 +10,7 @@ const UserLogin = () => {
   const [password, setPassword] = useState();
   const { user, updateUser, role } = useContext(AuthContext);
   const navigate = useNavigate();
-  useEffect(() => {
-  }, []);
+  useEffect(() => {}, []);
   const handleLogin = async () => {
     // make the http request fot the login
     try {
@@ -23,7 +22,7 @@ const UserLogin = () => {
         }
       );
       console.log(res.data.token);
-      updateUser(res.data.token, res.data.role || 1);
+      updateUser(res.data.token, res.data.role || 1, res.data.user || null);
       navigate("/");
     } catch (error) {
       Swal.fire({
@@ -45,7 +44,7 @@ const UserLogin = () => {
               Login to your account
             </h2>
           </div>
-          
+
           <div className="flex flex-col gap-4">
             <div className="w-full flex flex-col font-sans">
               <label htmlFor="" className="p-1 font-medium">

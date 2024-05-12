@@ -1,14 +1,30 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Application from "./Application";
-import { applicationsData } from "../../api/data";
-import Loading from "../Loading";
+import { AuthContext } from "../../context/AuthContext";
+import { axiosAPI } from "../../api/axiosAPI";
 
 const Applications = () => {
-  const posts = applicationsData;
+  const [applicationsData, setApplicationsData] = useState([]);
+  const { user, token } = useContext(AuthContext);
+  useEffect(() => {
+    const id = user._id;
+    axiosAPI
+      .get(`applications/user/${id}`, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then((res) => {
+        setApplicationsData(res.data?.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
   return (
     <div className="min-h-screen flex flex-col gap-2">
-      {posts.map((c) => {
-        return <Application post={c} />;
+      {applicationsData?.map((c, i) => {
+        return <Application key={i} post={c} />;
       })}
     </div>
   );

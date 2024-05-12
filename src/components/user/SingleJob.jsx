@@ -2,12 +2,12 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { axiosAPI } from "../../api/axiosAPI";
 import { AuthContext } from "../../context/AuthContext";
+import Swal from "sweetalert2";
 
 const SingleJob = () => {
-  const [display, setDiplay] = useState(false);
   const { jobId } = useParams();
   const [post, setPost] = useState([]);
-  const { token } = useContext(AuthContext);
+  const { token, user } = useContext(AuthContext);
   useEffect(() => {
     axiosAPI
       .get(`jobs/${jobId}`, {
@@ -18,10 +18,41 @@ const SingleJob = () => {
       .then((res) => {
         setPost(res.data?.data);
       })
-      .catch((error) => {
-      });
+      .catch((error) => {});
   }, []);
-
+  const handleApplicationApply = () => {
+    const user_id = user._id;
+    console.log(user_id, " ", jobId);
+    axiosAPI
+      .post(
+        "/applications",
+        {
+          job_id: jobId,
+          user_id: user_id,
+        },
+        {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            Authorization: "Bearer " + token,
+          },
+        }
+      )
+      .then(() => {
+        Swal.fire({
+          title: "Success",
+          text: "Your Application has been done successfuly .",
+          icon: "success",
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+        });
+      });
+  };
   return (
     <div className="h-fit w-full flex-row  space-y-4">
       {/** MAIN DETAILS SECTION */}
@@ -43,35 +74,18 @@ const SingleJob = () => {
           </h2>
           <div className="flex text-gray-600 mt-1 flex-col text-[10px] md:text-base font-medium rounded-xl">
             <span>23 Applications | 4 Viewed </span>
-            <span>posted at : {post?.post_date?.slice(0,10)}</span>
+            <span>posted at : {post?.post_date?.slice(0, 10)}</span>
           </div>
         </div>
         <div className="flex items-start mt-2 mr-1.5 sm:mr-3">
           <button
-            href="/cv_preview.html"
             className="text-xs text-center md:text-lg whitespace-nowrap text-white font-bold rounded-sm p-1 md:p-2 lg:p-3 md:w-32 bg-blue"
-            onClick={() => setDiplay(!display)}
+            onClick={handleApplicationApply}
           >
             Apply
           </button>
         </div>
       </div>
-      {/** CV  */}
-      <div className="">
-        {display && (
-          <object
-            data="/cv.pdf"
-            type="application/pdf"
-            className="w-full h-screen"
-          >
-            <p>
-              Your web browser doesn't have a PDF plugin.
-              <a href="/cv.pdf">click here to download the PDF file.</a>
-            </p>
-          </object>
-        )}
-      </div>
-
       {/**INFO */}
       <div className="bg-white p-1 md:p-4 rounded-xl">
         <h2 className="font-bold text-blue text-[14px] sm:text-base md:text-xl">
@@ -98,7 +112,7 @@ const SingleJob = () => {
       {/**SKILLS */}
       <div className="bg-white p-1 md:p-4 rounded-xl">
         <h2 className="p-1 font-bold text-blue text-[14px] sm:text-base md:text-xl">
-        NEEDED SKILLS
+          NEEDED SKILLS
         </h2>
         <div className="flex flex-row w-full">
           {post?.skills?.map((s, i) => {
