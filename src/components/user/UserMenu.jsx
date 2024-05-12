@@ -6,17 +6,6 @@ import { Link } from "react-router-dom";
 const UserMenu = () => {
   const { updateUser } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
-  const items = [
-    {
-      title: "Settings",
-      icon: <i className="fa-solid fa-gear"></i>,
-    },
-    {
-      title: "Logout",
-      icon: <i className="fa-solid fa-right-from-bracket"></i>,
-    },
-  ];
-
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };

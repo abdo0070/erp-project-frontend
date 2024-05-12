@@ -30,9 +30,6 @@ const UserHeader = () => {
         </div>
         {/** PROFILE ICON */}
         <div className="h-full flex items-center gap-2 text-white text-lg md:text-2xl">
-          {/* <button>
-            <i className="fa-solid fa-user"></i>
-          </button> */}
           <UserMenu />
         </div>
       </div>

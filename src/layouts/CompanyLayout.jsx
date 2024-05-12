@@ -1,14 +1,12 @@
 import React from "react";
-import { Outlet, Route, Routes } from "react-router-dom";
-import UserHeader from "../components/user/UserHeader";
-import Cvs from "../components/Cvs";
-import PostsIndex from "../components/company/PostsIndex";
+import { Outlet } from "react-router-dom";
+import CompanyHeader from "../components/company/CompanyHeader";
 
 const CompanyLayout = () => {
   return (
     <>
       <div className="bg-soft-gray">
-        <UserHeader />
+        <CompanyHeader />
         <div className="min-h-screen w-10/12 m-auto">
           <Outlet />
         </div>
