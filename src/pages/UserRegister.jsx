@@ -3,6 +3,8 @@ import GuestHeader from "../components/guest/GuestHeader";
 import { axiosAPI } from "./../api/axiosAPI";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { imageDB } from "../firebaseConfig";
 
 const UserRegister = () => {
   const [isOpen, setOpen] = useState(true);
@@ -21,7 +23,7 @@ const UserRegister = () => {
   const [careerLevel, setCareelLevel] = useState();
   const [image, setImage] = useState();
   const [skills, setSkills] = useState([]);
-  const [cv, setCv] = useState("CV ...");
+  const [cv, setCv] = useState();
 
   const hanleSubmit = async () => {
     // Validate input data
@@ -31,25 +33,33 @@ const UserRegister = () => {
     // }
     // MAKE THE POST REQUEST .
     try {
-      await axiosAPI.post(
-        "users/register",
-        {
-          name,
-          user_name,
-          email,
-          password,
-          date,
-          title,
-          address,
-          job_type: jobType,
-          careel_level: careerLevel,
-          skills,
-          image,
-        },
-        {
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        }
-      );
+      const imageRef = ref(imageDB, `images/users/${image.name}`);
+      await uploadBytes(imageRef, image);
+      // Get download URL of the uploaded logo
+      const ImageURL = await getDownloadURL(imageRef);
+
+      console.log(cv);
+      const CvRef = ref(imageDB, `user/cvs/${cv.name}`);
+      await uploadBytes(CvRef, cv);
+      // Get download URL of the uploaded logo
+      const CvURL = await getDownloadURL(CvRef);
+      const newUser = {
+        name,
+        user_name,
+        email,
+        password,
+        date,
+        title,
+        address,
+        job_type: jobType,
+        career_level: careerLevel,
+        skills,
+        image: ImageURL,
+        cv_link: CvURL,
+      };
+      await axiosAPI.post("users/register", newUser, {
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      });
       Swal.fire({
         title: "Success!",
         text: "You have successfully registered.",
@@ -59,6 +69,7 @@ const UserRegister = () => {
         navigate("/company/login");
       });
     } catch (error) {
+      console.log(error);
       Swal.fire({
         icon: "error",
         title: "Oops...",
@@ -367,7 +378,7 @@ const UserRegister = () => {
                   <span className="sr-only">Choose profile photo</span>
                   <input
                     type="file"
-                    onChange={(e) => setImage(e.target.value)}
+                    onChange={(e) => setImage(e.target.files[0])}
                     className="block w-full text-sm text-slate-500
         file:mr-4 file:py-2 file:px-4
         file:rounded-full file:border-0
@@ -391,6 +402,7 @@ const UserRegister = () => {
                 <input
                   className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                   type="file"
+                  onChange={(e) => setCv(e.target.files[0])}
                 />
               </div>
               {/**SKILLS**/}

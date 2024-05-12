@@ -7,7 +7,6 @@ import { SearchContext } from "../context/SearchContext";
 const Cvs = () => {
   const [usersCvs, setUsersCvs] = useState([]);
   const { q } = useContext(SearchContext);
-  // AuthContext
   const { token, user, refreshToken } = useContext(AuthContext);
 
   useEffect(() => {

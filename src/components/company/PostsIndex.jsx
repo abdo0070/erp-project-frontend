@@ -12,7 +12,7 @@ const PostsIndex = () => {
     updatePosts();
   }, []);
   const updatePosts = () => {
-    const id = JSON.parse(user)._id;
+    const id = user._id;
     axiosAPI
       .get(`companies/jobs/${id}`, {
         headers: {

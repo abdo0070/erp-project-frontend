@@ -5,8 +5,7 @@ const CompanyProfile = () => {
   const { user } = useContext(AuthContext);
   const [curUser, setCurUser] = useState({});
   useEffect(() => {
-    setCurUser(JSON.parse(user));
-    console.log(user);
+    setCurUser(user);
   }, []);
 
   return (

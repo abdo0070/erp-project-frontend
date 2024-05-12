@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 
 const Job = ({ post }) => {
   const { name, image, title, career_level, location, post_date, skills } = post;
-  useEffect(() => {});
+  useEffect(() => {
+  });
   const handleOnClick = () => {};
 
   return (
@@ -13,11 +14,11 @@ const Job = ({ post }) => {
         <div className="w-2/12 min-w-fit flex-col justify-center flex items-center">
           <img
             className="h-12 w-12 md:h-18 md:w-18 lg:w-28 lg:h-28 rounded-full"
-            src={image}
+            src={post?.company[0]?.image}
             alt="company_image"
           />
           <span className="text-sm md:text-base lg:text-xl text-slate-700 font-semibold">
-            {name}
+            {post?.company[0]?.name}
           </span>
         </div>
         <div className="w-10/12 flex flex-col">

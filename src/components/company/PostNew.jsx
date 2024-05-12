@@ -30,7 +30,7 @@ const PostNew = () => {
       return;
     }
     // Create a new post object with the form data
-    const id = JSON.parse(user)._id;
+    const id = user._id;
     const newPost = {
       title: jobTitle,
       expected_salary: expectedSalary,

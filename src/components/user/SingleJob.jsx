@@ -17,6 +17,7 @@ const SingleJob = () => {
       })
       .then((res) => {
         setPost(res.data?.data);
+        console.log(res.data?.data);
       })
       .catch((error) => {});
   }, []);
@@ -61,11 +62,11 @@ const SingleJob = () => {
         <div className="w-fit flex flex-col items-center p-1">
           <img
             className="w-14 h-14 sm:w-20 sm:h-20 md:w-28 md:h-28 rounded-full"
-            src={post?.image}
+            src={post?.company[0].image}
             alt=""
           />
           <h2 className="font-bold text-slate-700 text-xs sm:text-base rounded-xl">
-            {post?.company_name}
+            {post?.company[0].name}
           </h2>
         </div>
         <div className="w-10/12 flex flex-col p-2">

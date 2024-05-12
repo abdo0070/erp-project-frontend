@@ -66,7 +66,7 @@ const CvReview = () => {
           >
             <p>
               Your web browser doesn't have a PDF plugin.
-              <a href="/cv.pdf">click here to download the PDF file.</a>
+              <a href={user?.cv_link}>click here to download the PDF file.</a>
             </p>
           </object>
         )}

@@ -9,7 +9,7 @@ const Cv = ({ cv }) => {
       <div className="w-2/12 min-w-fit flex-col justify-center flex items-center">
         <img
           className="h-12 w-12 md:h-16 md:w-16 rounded-full"
-          src={`/img/user.png`}
+          src={cv?.image}
           alt=""
         />
         <span className="text-sm font-semibold">{cv?.name}</span>
@@ -20,7 +20,7 @@ const Cv = ({ cv }) => {
         <div className="flex text-gray-600 flex-col text-[8px] font-medium">
           <span>Career-level : {cv?.career_level}</span>
           <span>Location : {cv?.address}</span>
-          <span>Age : {cv?.age} years</span>
+          <span>Prefered job-type : {cv?.job_type}</span>
         </div>
 
         <div className="flex flex-row w-full">

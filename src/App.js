@@ -20,11 +20,13 @@ import NotAuth from "./pages/NotAuth";
 import UserAuth from "./auth/UserAuth";
 import CompanyLogin from "./pages/CompanyLogin";
 import CompanyRegister from "./pages/CompanyRegister";
+
 function App() {
+  // Initialize Firebase
   return (
     <BrowserRouter>
       <Header />
-      <div className="min-h-screen w-10/12 m-auto bg-soft-gray">
+      <div className="min-h-screen bg-soft-gray">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
@@ -58,14 +60,7 @@ function App() {
                 </CompanyAuth>
               }
             />
-            <Route
-              path="cv/:userId"
-              element={
-                <CompanyAuth>
-                  <CvReview />
-                </CompanyAuth>
-              }
-            />
+            <Route path="cv/:userId" element={<CvReview />} />
             <Route
               path="profile"
               element={
@@ -86,22 +81,8 @@ function App() {
               }
             />
 
-            <Route
-              path="cv"
-              element={
-                <UserAuth>
-                  <Cvs />
-                </UserAuth>
-              }
-            />
-            <Route
-              path="cv/:userId"
-              element={
-                <UserAuth>
-                  <CvReview />
-                </UserAuth>
-              }
-            />
+            <Route path="cv" element={<Cvs />} />
+            <Route path="cv/:userId" element={<CvReview />} />
             <Route
               path="jobs"
               element={

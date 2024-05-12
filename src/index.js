@@ -13,9 +13,7 @@ root.render(
   <React.StrictMode>
     <SearchProvidor>
       <AuthProvidor>
-        <div className="bg-soft-gray">
           <App />
-        </div>
       </AuthProvidor>
     </SearchProvidor>
   </React.StrictMode>
