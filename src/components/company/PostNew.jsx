@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { axiosAPI } from "../../api/axiosAPI";
 import { AuthContext } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const PostNew = () => {
   const { token, user } = useContext(AuthContext);
@@ -38,7 +39,7 @@ const PostNew = () => {
       job_type: jobType,
       description,
       company_id: id,
-      skills : ["Web","Node.js","OOP"]
+      skills: ["Web", "Node.js", "OOP"],
     };
 
     try {
@@ -57,11 +58,19 @@ const PostNew = () => {
       setDescription("");
       setError("");
       // Alert success message
-      alert("SUCCESS");
+      Swal.fire({
+        title: "Deleted!",
+        text: "Your file has been added.",
+        icon: "success",
+      });
     } catch (error) {
       // Handle submission error
       console.log(error);
-      alert("SOMETHING WENT WRONG");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong!",
+      });
     }
   };
 

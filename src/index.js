@@ -5,14 +5,16 @@ import { AuthProvidor } from "./context/AuthContext";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { router } from "./router";
 import Footer from "./components/Footer";
-
+import { SearchProvidor } from "./context/SearchContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <AuthProvidor>
-      <RouterProvider router={router} />
-    </AuthProvidor>
+    <SearchProvidor>
+      <AuthProvidor>
+        <RouterProvider router={router} />
+      </AuthProvidor>
+    </SearchProvidor>
     <Footer />
   </React.StrictMode>
 );

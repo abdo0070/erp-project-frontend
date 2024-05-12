@@ -24,7 +24,10 @@ export const router = createBrowserRouter([
     path: "/home",
     element: <App />,
   },
-  
+  {
+    path : "cv",
+    element : <Cvs />
+  },
   // FOR USER
   {
     path: "/user",

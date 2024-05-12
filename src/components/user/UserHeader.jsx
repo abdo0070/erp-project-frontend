@@ -1,11 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import UserMenu from "./UserMenu";
+import Search from "../Search";
 
 const UserHeader = () => {
-  const handleJobSearch = (e) => {
-    e.preventDefault()
-  }
   return (
     <div className="h-20 w-full flex justify-center bg-footer-header shadow-sm shadow-black drop-shadow-2xl border-b-2 border-black sticky top-0 left-0">
       <div className="w-10/12 h-full flex flex-row justify-between">
@@ -22,24 +20,13 @@ const UserHeader = () => {
             <Link className="" to={"/home"}>
               Home
             </Link>
-            <Link className="" to={"/applications"}>
-              Applications
+            <Link className="" to={"/user/jobs"}>
+              Jobs
             </Link>
           </div>
         </div>
         <div className="h-full flex flex-row items-center">
-          <form className="flex flex-row  w-full" onSubmit={handleJobSearch}>
-            <input
-              type="text"
-              placeholder="Search ?"
-              className="bg-white rounded-l-2xl p-1 lg:p-2"
-            />
-            <input
-              type="submit"
-              className="bg-slate-100 rounded-r-2xl p-1 lg:p-2"
-              value="search"
-            />
-          </form>
+          <Search />
         </div>
         {/** PROFILE ICON */}
         <div className="h-full flex items-center gap-2 text-white text-lg md:text-2xl">

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const Job = ({ post }) => {
-  const { name, image, title, career_level, address, age, skills } = post;
+  const { name, image, title, career_level, location, post_date, skills } = post;
   useEffect(() => {});
   const handleOnClick = () => {};
 
@@ -27,8 +27,8 @@ const Job = ({ post }) => {
           {/* DETAILS */}
           <div className="flex text-gray-600 flex-col lg:text-sm text-[8px] lg:mb-2 font-medium">
             <span>Career-level : {career_level}</span>
-            <span>Location : {address}</span>
-            <span>Age : {age} years</span>
+            <span>Location : {location}</span>
+            <span>posted at :{post_date?.slice(0,10)}</span>
           </div>
 
           <div className="flex flex-row w-full">

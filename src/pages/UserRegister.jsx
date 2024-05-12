@@ -56,7 +56,7 @@ const UserRegister = () => {
         icon: "success",
         button: "OK",
       }).then(() => {
-        navigate("/login");
+        navigate("/company/login");
       });
     } catch (error) {
       Swal.fire({
@@ -360,7 +360,7 @@ const UserRegister = () => {
                   <img
                     id="preview_img"
                     className="h-16 w-16 object-cover rounded-full"
-                    src="https://lh3.googleusercontent.com/a-/AFdZucpC_6WFBIfaAbPHBwGM9z8SxyM1oV4wB4Ngwp_UyQ=s96-c"
+                    src="/img/null.png"
                     alt="Current profile photo"
                   />
                 </div>

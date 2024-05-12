@@ -78,6 +78,7 @@ const SingleJob = () => {
           JOB INFO
         </h2>
         <div className="flex text-gray-800 flex-col text-sm md:text-base font-medium rounded-xl">
+          <span>Expected Salary : {post?.expected_salary} EGP</span>
           <span>Career-level : {post?.career_level}</span>
           <span>Location : {post?.location}</span>
           <span>Job Type : {post?.job_type} </span>
@@ -97,7 +98,7 @@ const SingleJob = () => {
       {/**SKILLS */}
       <div className="bg-white p-1 md:p-4 rounded-xl">
         <h2 className="p-1 font-bold text-blue text-[14px] sm:text-base md:text-xl">
-          SKILLS
+        NEEDED SKILLS
         </h2>
         <div className="flex flex-row w-full">
           {post?.skills?.map((s, i) => {

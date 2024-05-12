@@ -9,7 +9,7 @@ export const AuthProvidor = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token") || null);
 
   const updateUser = (newToken, newRole) => {
-    let userDecodedToken = decodeToken(newToken);
+    let userDecodedToken = JSON.stringify(decodeToken(newToken)?.data);
     const isExp = isExpired(newToken);
     setUser(userDecodedToken);
     setToken(newToken);
@@ -20,11 +20,10 @@ export const AuthProvidor = ({ children }) => {
     if (!userDecodedToken) {
       return;
     }
-    userDecodedToken = JSON.parse(userDecodedToken?.data);
     setUser(userDecodedToken);
-    localStorage.setItem("user",JSON.stringify(userDecodedToken));
+    console.log(userDecodedToken);
+    localStorage.setItem("user", userDecodedToken);
     console.log(localStorage.getItem("user"));
-
   };
 
   const refreshToken = () => {

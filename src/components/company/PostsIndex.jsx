@@ -95,7 +95,7 @@ const PostsIndex = () => {
                   </td>
                   <td className="p-1 whitespace-nowrap">{row.career_level}</td>
                   <td className="p-1 whitespace-nowrap">
-                    {row.post_date.slice(0, 10)}
+                    {row.post_date?.slice(0, 10)}
                   </td>
                   <td className="p-1 whitespace-nowrap ">{row.location}</td>
                   <td className="p-1 whitespace-nowrap text-green-500 font-semibold">
