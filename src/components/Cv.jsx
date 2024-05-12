@@ -1,8 +1,10 @@
-import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const Cv = ({ cv }) => {
   return (
-    <div className="p-2 w-full bg-white flex flex-row">
+    <Link to={`cv/${cv._id}`} className="p-2 w-full bg-white flex flex-row" onClick={() => {
+      // GO TO CV REVIEW
+    }}>
       {/**IMAGE & NAME SECTION */}
       <div className="w-2/12 min-w-fit flex-col justify-center flex items-center">
         <img
@@ -22,16 +24,16 @@ const Cv = ({ cv }) => {
         </div>
 
         <div className="flex flex-row w-full">
-          {cv?.skills?.map((s) => {
+          {cv?.skills?.map((s,i) => {
             return (
-              <button className="p-1 text-white m-0.5 font-medium text-[10px] rounded-lg bg-blue">
+              <button key={i} className="p-1 text-white m-0.5 font-medium text-[10px] rounded-lg bg-blue">
                 {s}
               </button>
             );
           })}
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 export default Cv;

@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { axiosAPI } from "../../api/axiosAPI";
 import { AuthContext } from "../../context/AuthContext";
+import { Link } from "react-router-dom";
 
 const PostNew = () => {
   const { token, user } = useContext(AuthContext);
@@ -8,24 +9,36 @@ const PostNew = () => {
   const [jobTitle, setJobTitle] = useState("");
   const [expectedSalary, setExpectedSalary] = useState("");
   const [careerLevel, setCareerLevel] = useState("");
-  const [postTime, setPostTime] = useState("");
   const [jobLocation, setJobLocation] = useState("");
   const [jobType, setJobType] = useState("");
-  const [skills, setSkills] = useState([]);
+  const [description, setDescription] = useState("");
+  const [error, setError] = useState(""); // State for error message
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // Validate form fields
+    if (
+      !jobTitle ||
+      !expectedSalary ||
+      !careerLevel ||
+      !jobLocation ||
+      !jobType ||
+      !description
+    ) {
+      setError("All fields are required");
+      return;
+    }
     // Create a new post object with the form data
-    // ADD VALIDATE TO THE FORM
     const id = JSON.parse(user)._id;
-    console.log(id);
     const newPost = {
       title: jobTitle,
       expected_salary: expectedSalary,
       career_level: careerLevel,
       location: jobLocation,
       job_type: jobType,
+      description,
       company_id: id,
-      skills: ["Word", "Computer skills", "Exceel", "Good English"],
+      skills : ["Web","Node.js","OOP"]
     };
 
     try {
@@ -35,15 +48,19 @@ const PostNew = () => {
           Authorization: "Bearer " + token,
         },
       });
-      // MAKE ALERT THE THE JOB IS ADDED SUCCESSFULY
-      alert("SUCCESS");
+      // Reset form fields and error state after successful submission
       setJobTitle("");
       setExpectedSalary("");
       setCareerLevel("");
-      setPostTime("");
       setJobLocation("");
       setJobType("");
+      setDescription("");
+      setError("");
+      // Alert success message
+      alert("SUCCESS");
     } catch (error) {
+      // Handle submission error
+      console.log(error);
       alert("SOMETHING WENT WRONG");
     }
   };
@@ -53,6 +70,7 @@ const PostNew = () => {
       onSubmit={handleSubmit}
       className="w-full max-w-2xl mx-auto bg-white shadow-md rounded-lg p-8 mt-8"
     >
+      {/* Job Title */}
       <div className="mb-4">
         <label
           htmlFor="jobTitle"
@@ -69,6 +87,7 @@ const PostNew = () => {
           required
         />
       </div>
+      {/* Expected Salary */}
       <div className="mb-4">
         <label
           htmlFor="expectedSalary"
@@ -85,6 +104,7 @@ const PostNew = () => {
           required
         />
       </div>
+      {/* Career Level */}
       <div className="mb-4">
         <label
           htmlFor="careerLevel"
@@ -97,15 +117,15 @@ const PostNew = () => {
           value={careerLevel}
           onChange={(e) => setCareerLevel(e.target.value)}
           className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+          required
         >
           <option value="">Select Career Level</option>
           <option value="Entry Level">Student</option>
           <option value="Mid Level">Junior</option>
-          <option value="Mid Level">Mid-level</option>
           <option value="Senior Level">Senior</option>
         </select>
       </div>
-
+      {/* Job Location */}
       <div className="mb-4">
         <label
           htmlFor="jobLocation"
@@ -122,6 +142,7 @@ const PostNew = () => {
           required
         />
       </div>
+      {/* Job Type */}
       <div className="mb-4">
         <label
           htmlFor="jobType"
@@ -134,6 +155,7 @@ const PostNew = () => {
           value={jobType}
           onChange={(e) => setJobType(e.target.value)}
           className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+          required
         >
           <option value="">Select Job Type</option>
           <option value="Full-time">Full-time</option>
@@ -142,12 +164,40 @@ const PostNew = () => {
           <option value="Freelance">Freelance</option>
         </select>
       </div>
-      <button
-        type="submit"
-        className="bg-blue-500 text-white bg-green-500 font-bold px-4 py-2 rounded-md"
-      >
-        Submit
-      </button>
+      {/* Description */}
+      <div className="mb-4">
+        <label
+          htmlFor="description"
+          className="block text-sm font-medium text-gray-700"
+        >
+          Description
+        </label>
+        <textarea
+          id="description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+          rows="4"
+          required
+        />
+      </div>
+      {/* Error Message */}
+      {error && <div className="text-red-500 mb-4">{error}</div>}
+      {/* Form Buttons */}
+      <div className="flex justify-between">
+        <Link
+          to={"/company/posts"}
+          className="bg-blue-500 text-white bg-green-500 font-bold px-4 py-2 rounded-md"
+        >
+          Back
+        </Link>
+        <button
+          type="submit"
+          className="bg-blue-500 text-white bg-green-500 font-bold px-4 py-2 rounded-md"
+        >
+          Submit
+        </button>
+      </div>
     </form>
   );
 };

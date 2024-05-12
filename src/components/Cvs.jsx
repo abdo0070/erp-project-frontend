@@ -18,7 +18,6 @@ const Cvs = () => {
       })
       .then((res) => {
         setUsersCvs(res.data?.data);
-        console.log(res.data?.data);
       })
       .catch((err) => {
         refreshToken();

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { axiosAPI } from "../api/axiosAPI";
 
@@ -12,13 +12,14 @@ const CvReview = () => {
   useEffect(() => {
     // FETCH USER DATA
     axiosAPI
-      .get(`/users/6633763ed4e5df9212cb340e`, {
+      .get(`/users/${userId}`, {
         headers: {
           Authorization: "Bearer " + token,
         },
       })
       .then((res) => {
         setUser(res.data?.data);
+        console.log(res.data?.data);
       })
       .catch((err) => refreshToken());
   }, []);

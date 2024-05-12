@@ -1,6 +1,8 @@
-import React from 'react'
-import { Outlet } from 'react-router-dom'
-import UserHeader from '../components/user/UserHeader';
+import React from "react";
+import { Outlet, Route, Routes } from "react-router-dom";
+import UserHeader from "../components/user/UserHeader";
+import Cvs from "../components/Cvs";
+import PostsIndex from "../components/company/PostsIndex";
 
 const CompanyLayout = () => {
   return (
@@ -12,7 +14,7 @@ const CompanyLayout = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default CompanyLayout
+export default CompanyLayout;

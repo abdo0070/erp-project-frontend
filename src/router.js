@@ -24,6 +24,7 @@ export const router = createBrowserRouter([
     path: "/home",
     element: <App />,
   },
+  
   // FOR USER
   {
     path: "/user",
@@ -62,16 +63,15 @@ export const router = createBrowserRouter([
   },
   // FOR COMPANY
   {
-
     path : "company",
     element : <App />,
     children : [
       {
-        path : "posts",
-        element : <PostsIndex />
+        path : "",
+        element : <Cvs />
       },
       {
-        path : "",
+        path : "posts",
         element : <PostsIndex />
       },
       {
@@ -82,7 +82,10 @@ export const router = createBrowserRouter([
         path : "profile",
         element : <CompanyProfile />
       },
-      
+      {
+        path : "cv/:userId",
+        element : <CvReview />
+      },
     ]
   },
   {

@@ -3,15 +3,11 @@ import { Link } from "react-router-dom";
 
 const Job = ({ post }) => {
   const { name, image, title, career_level, address, age, skills } = post;
-  useEffect(() => {
-    
-  });
-  const handleOnClick = () => {
-
-  };
+  useEffect(() => {});
+  const handleOnClick = () => {};
 
   return (
-    <Link to={"/user/jobs/1"}>
+    <Link to={`/user/jobs/${post?._id}`}>
       <div className="p-2 w-full bg-white flex flex-row rounded-md">
         {/**IMAGE & NAME SECTION */}
         <div className="w-2/12 min-w-fit flex-col justify-center flex items-center">
@@ -36,9 +32,12 @@ const Job = ({ post }) => {
           </div>
 
           <div className="flex flex-row w-full">
-            {skills?.map((s,i) => {
+            {skills?.map((s, i) => {
               return (
-                <button key={i} className="p-1 text-white m-0.5 lg:p-2 font-medium text-[10px] rounded-lg bg-blue">
+                <button
+                  key={i}
+                  className="p-1 text-white m-0.5 lg:p-2 font-medium text-[10px] rounded-lg bg-blue"
+                >
                   {s}
                 </button>
               );

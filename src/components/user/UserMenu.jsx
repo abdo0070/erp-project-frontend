@@ -62,6 +62,14 @@ const UserMenu = () => {
                 <button href="#">Settings</button>
                 <i className="fa-solid fa-gear"></i>{" "}
               </Link>
+              <Link
+                to={"/user/applications"}
+                className="flex flex-row justify-between items-center px-4 py-2 w-full text-sm text-left text-gray-700 hover:bg-gray-100"
+              >
+                <button href="#">My Applications</button>
+                <i className="fa-solid fa-list"></i>
+              </Link>
+
               <li
                 onClick={handleLogout}
                 className="flex flex-row justify-between items-center px-4 py-2 w-full text-sm text-left text-gray-700 hover:bg-gray-100"

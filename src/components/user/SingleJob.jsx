@@ -1,28 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { axiosAPI } from "../../api/axiosAPI";
+import { AuthContext } from "../../context/AuthContext";
 
 const SingleJob = () => {
   const [display, setDiplay] = useState(false);
-
-  const post = {
-    id: 1,
-    company_name: "Jo",
-    image: "/img/user.png",
-    title: "Junior Full-stack Developer (React.js + PHP)",
-    skills: ["React.js", "PHP", "OOP", "Express.js", "Node.js", "HTMl", "JS"],
-    career_level: "Junior",
-    description:
-      " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae cupiditate quis, culpa in ex, tempore vel ratione odio magni ad harum cum velit dolorum reprehenderit officia maiores porro asperiores quae?",
-    address: "Cairo",
-    expected_salary: 2000,
-    job_type: "Remote",
-    post_date: "20-02-2024",
-  };
+  const { jobId } = useParams();
+  const [post, setPost] = useState([]);
+  const { token } = useContext(AuthContext);
   useEffect(() => {
-    // fetch post job by job_id from the api
+    axiosAPI
+      .get(`jobs/${jobId}`, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then((res) => {
+        setPost(res.data?.data);
+      })
+      .catch((error) => {
+      });
   }, []);
 
-  const { jobId } = useParams();
   return (
     <div className="h-fit w-full flex-row  space-y-4">
       {/** MAIN DETAILS SECTION */}
@@ -31,20 +30,20 @@ const SingleJob = () => {
         <div className="w-fit flex flex-col items-center p-1">
           <img
             className="w-14 h-14 sm:w-20 sm:h-20 md:w-28 md:h-28 rounded-full"
-            src={post.image}
+            src={post?.image}
             alt=""
           />
           <h2 className="font-bold text-slate-700 text-xs sm:text-base rounded-xl">
-            {post.company_name}
+            {post?.company_name}
           </h2>
         </div>
         <div className="w-10/12 flex flex-col p-2">
           <h2 className="text-blue text-xs sm:text-lg md:text-2xl font-bold">
-            {post.title}
+            {post?.title}
           </h2>
           <div className="flex text-gray-600 mt-1 flex-col text-[10px] md:text-base font-medium rounded-xl">
             <span>23 Applications | 4 Viewed </span>
-            <span>posted at : {post.post_date}</span>
+            <span>posted at : {post?.post_date?.slice(0,10)}</span>
           </div>
         </div>
         <div className="flex items-start mt-2 mr-1.5 sm:mr-3">
@@ -79,9 +78,9 @@ const SingleJob = () => {
           JOB INFO
         </h2>
         <div className="flex text-gray-800 flex-col text-sm md:text-base font-medium rounded-xl">
-          <span>Career-level : {post.career_level}</span>
-          <span>Location : {post.address}</span>
-          <span>Job Type : {post.job_type} </span>
+          <span>Career-level : {post?.career_level}</span>
+          <span>Location : {post?.location}</span>
+          <span>Job Type : {post?.job_type} </span>
         </div>
       </div>
 
@@ -91,7 +90,7 @@ const SingleJob = () => {
           Description
         </h2>
         <p className="bg-soft-gray p-1 md:p-2 rounded-2xl sm:text-sm md:text-lg text-[10px] font-serif">
-          {post.description || "No Description"}
+          {post?.description || "No Description"}
         </p>
       </div>
 
@@ -101,9 +100,12 @@ const SingleJob = () => {
           SKILLS
         </h2>
         <div className="flex flex-row w-full">
-          {post.skills?.map((s) => {
+          {post?.skills?.map((s, i) => {
             return (
-              <button className="p-1 md:p-2 text-white m-0.5 font-medium text-[10px]  rounded-lg bg-blue">
+              <button
+                key={i}
+                className="p-1 md:p-2 text-white m-0.5 font-medium text-[10px]  rounded-lg bg-blue"
+              >
                 {s}
               </button>
             );
