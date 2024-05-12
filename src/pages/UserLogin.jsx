@@ -36,7 +36,6 @@ const UserLogin = () => {
   };
   return (
     <div className="w-full h-screen bg-white">
-      <UserHeader />
       <div className="w-full h-full min-w-fit flex flex-col items-center justify-center">
         <div className="mt-1 w-8/12 md:w-5/12 min-w-fit p-2 bg-white rounded-xl  h-[25rem] max-h-full flex flex-col border-black border-2">
           <div className="w-full">

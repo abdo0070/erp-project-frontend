@@ -6,7 +6,7 @@ const UserProfile = () => {
   const [curUser, setCurUser] = useState({});
   const [open, setOpen] = useState(true);
   useEffect(() => {
-    setCurUser(JSON.parse(user));
+    setCurUser(user);
   }, []);
   return (
     <div className="flex items-center flex-row justify-between h-screen w-full">

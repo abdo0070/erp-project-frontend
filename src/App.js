@@ -1,20 +1,149 @@
-import { useContext, useEffect } from "react";
-import { AuthContext, AuthProvidor } from "./context/AuthContext";
-import GuestLayout from "./layouts/GuestLayout";
 import "./style.css";
-import UserLayout from "./layouts/UserLayout";
-import CompanyLayout from "./layouts/CompanyLayout";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Home from "./components/Home";
+import UserLogin from "./pages/UserLogin";
+import UserRegister from "./pages/UserRegister";
+import CompanyAuth from "./auth/CompanyAuth";
+import PostsIndex from "./components/company/PostsIndex";
+import CvReview from "./components/CvReview";
+import PostNew from "./components/company/PostNew";
+import Cvs from "./components/Cvs";
+import Jobs from "./components/user/Jobs";
+import SingleJob from "./components/user/SingleJob";
+import Applications from "./components/user/Applications";
+import UserProfile from "./components/user/UserProfile";
+import CompanyProfile from "./components/company/CompanyProfile";
+import NotFound from "./pages/NotFound";
+import NotAuth from "./pages/NotAuth";
+import UserAuth from "./auth/UserAuth";
+import CompanyLogin from "./pages/CompanyLogin";
+import CompanyRegister from "./pages/CompanyRegister";
 function App() {
-  const { role, refreshToken } = useContext(AuthContext);
-  useEffect(() => {
-    // refreshToken();
-  }, []);
-  if (role == 1) {
-    return <UserLayout />;
-  } else if (role == 2) {
-    return <CompanyLayout />;
-  }
-  return <GuestLayout />;
+  return (
+    <BrowserRouter>
+      <Header />
+      <div className="min-h-screen w-10/12 m-auto bg-soft-gray">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/login" element={<UserLogin />} />
+          <Route path="/register" element={<UserRegister />} />
+          <Route path="/companies/login" element={<CompanyLogin />} />
+          <Route path="/companies/register" element={<CompanyRegister />} />
+
+          <Route path="/company">
+            <Route
+              path=""
+              element={
+                <CompanyAuth>
+                  <Home />
+                </CompanyAuth>
+              }
+            />
+            <Route
+              path="posts"
+              element={
+                <CompanyAuth>
+                  <PostsIndex />
+                </CompanyAuth>
+              }
+            />
+            <Route
+              path="posts/new"
+              element={
+                <CompanyAuth>
+                  <PostNew />
+                </CompanyAuth>
+              }
+            />
+            <Route
+              path="cv/:userId"
+              element={
+                <CompanyAuth>
+                  <CvReview />
+                </CompanyAuth>
+              }
+            />
+            <Route
+              path="profile"
+              element={
+                <CompanyAuth>
+                  <CompanyProfile />
+                </CompanyAuth>
+              }
+            />
+          </Route>
+
+          <Route path="/user">
+            <Route
+              path=""
+              element={
+                <UserAuth>
+                  <Home />
+                </UserAuth>
+              }
+            />
+
+            <Route
+              path="cv"
+              element={
+                <UserAuth>
+                  <Cvs />
+                </UserAuth>
+              }
+            />
+            <Route
+              path="cv/:userId"
+              element={
+                <UserAuth>
+                  <CvReview />
+                </UserAuth>
+              }
+            />
+            <Route
+              path="jobs"
+              element={
+                <UserAuth>
+                  <Jobs />
+                </UserAuth>
+              }
+            />
+            <Route
+              path="jobs/:jobId"
+              element={
+                <UserAuth>
+                  <SingleJob />
+                </UserAuth>
+              }
+            />
+            <Route
+              path="applications"
+              element={
+                <UserAuth>
+                  <Applications />
+                </UserAuth>
+              }
+            />
+            <Route
+              path="profile"
+              element={
+                <UserAuth>
+                  <UserProfile />
+                </UserAuth>
+              }
+            />
+          </Route>
+
+          <Route path="/notauthorized" element={<NotAuth />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </div>
+
+      <Footer />
+    </BrowserRouter>
+  );
 }
 
 export default App;

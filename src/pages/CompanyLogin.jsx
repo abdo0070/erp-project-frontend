@@ -35,7 +35,6 @@ const CompanyLogin = () => {
   };
   return (
     <div className="w-full h-screen bg-white">
-      <GuestHeader />
       <div className="w-full h-full min-w-fit flex flex-col items-center justify-center">
         <div className="mt-1 w-8/12 md:w-5/12 min-w-fit p-2 bg-white rounded-xl  h-[25rem] max-h-full flex flex-col border-black border-2">
           <div className="w-full">
@@ -78,7 +77,7 @@ const CompanyLogin = () => {
             <div className="w-full flex flex-col items-center font-sans font-bold text-sm md:text-lg">
               <h2>
                 Sign up as Company{" "}
-                <Link to={"/company/register"} className="text-blue">
+                <Link to={"/companies/register"} className="text-blue">
                   Sign Up{" "}
                 </Link>
               </h2>

@@ -134,7 +134,6 @@ const UserRegister = () => {
 
   return (
     <div className="w-full h-fit static bg-white">
-      <GuestHeader />
       <div className=" bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
         {isOpen ? (
           <div className="mt-8 sm:mx-auto w-full">

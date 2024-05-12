@@ -14,6 +14,7 @@ import SingleJob from "./components/user/SingleJob";
 import UserRegister from "./pages/UserRegister";
 import CompanyRegister from './pages/CompanyRegister';
 import CompanyLogin from "./pages/CompanyLogin";
+import NotAuth from "./pages/NotAuth";
 
 export const router = createBrowserRouter([
   {
@@ -106,6 +107,10 @@ export const router = createBrowserRouter([
   {
     path: "/company/register",
     element: <CompanyRegister />,
+  },
+  {
+    path : '/notauthorized',
+    element : <NotAuth />
   },
   {
     path: "*",

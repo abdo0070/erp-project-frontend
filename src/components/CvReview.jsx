@@ -10,7 +10,6 @@ const CvReview = () => {
   // AUTH
   const { token, refreshToken } = useContext(AuthContext);
   useEffect(() => {
-    // FETCH USER DATA
     axiosAPI
       .get(`/users/${userId}`, {
         headers: {
@@ -18,8 +17,8 @@ const CvReview = () => {
         },
       })
       .then((res) => {
+        console.log(res.data);
         setUser(res.data?.data);
-        console.log(res.data?.data);
       })
       .catch((err) => refreshToken());
   }, []);
@@ -45,7 +44,6 @@ const CvReview = () => {
           <div className="flex text-gray-600 flex-col text-[10px] md:text-base font-medium rounded-xl">
             <span>Career-level : {user?.career_level}</span>
             <span>Location : {user?.address}</span>
-            <span>Age : {user?.age} years</span>
           </div>
         </div>
         <div className="flex items-start mt-2 mr-1.5 sm:mr-3">
@@ -79,7 +77,7 @@ const CvReview = () => {
           Description
         </h2>
         <p className="bg-soft-gray p-1 md:p-2 rounded-2xl sm:text-sm md:text-lg text-[10px] font-serif">
-          {user?.description}
+          {user?.description || "..."}
         </p>
       </div>
 
@@ -107,7 +105,7 @@ const CvReview = () => {
         <h2 className="p-1 text-xs sm:text-sm font-semibold">
           Phone Number :
           <span className="sm:text-sm text-[10px] font-extralight">
-            {user?.phone}
+            {user?.phone || "UNKOWN PHONE NO."}
           </span>
         </h2>
         <h2 className="p-1 text-xs sm:text-sm font-semibold">

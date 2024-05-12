@@ -1,5 +1,6 @@
 import { createContext, useState } from "react";
-import { isExpired, decodeToken } from "react-jwt";
+import { isExpired } from "react-jwt";
+import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext();
 export const AuthProvidor = ({ children }) => {
@@ -35,7 +36,6 @@ export const AuthProvidor = ({ children }) => {
     }
     return false;
   };
-
   return (
     <AuthContext.Provider
       value={{ user, token, role, updateUser, refreshToken }}
