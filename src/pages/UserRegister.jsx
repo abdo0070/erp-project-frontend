@@ -160,7 +160,7 @@ const UserRegister = () => {
                 <label className="block text-sm font-medium leading-5  text-gray-700">
                   Name
                 </label>
-                <div className="mt-1 relative rounded-md shadow-sm">
+                <div className="mt-1  rounded-md shadow-sm">
                   <input
                     placeholder="John Doe"
                     type="text"
@@ -180,7 +180,7 @@ const UserRegister = () => {
                 <label className="block text-sm font-medium leading-5  text-gray-700">
                   username
                 </label>
-                <div className="mt-1 relative rounded-md shadow-sm">
+                <div className="mt-1  rounded-md shadow-sm">
                   <input
                     placeholder="John_1"
                     value={user_name}
@@ -200,7 +200,7 @@ const UserRegister = () => {
                 <label className="block text-sm font-medium leading-5  text-gray-700">
                   Email address
                 </label>
-                <div className="mt-1 relative rounded-md shadow-sm">
+                <div className="mt-1  rounded-md shadow-sm">
                   <input
                     placeholder="user@example.com"
                     type="email"
@@ -253,7 +253,7 @@ const UserRegister = () => {
                 <label className="block text-sm font-medium leading-5  text-gray-700">
                   Address
                 </label>
-                <div className="mt-1 relative rounded-md shadow-sm">
+                <div className="mt-1  rounded-md shadow-sm">
                   <input
                     onChange={(e) => setAddress(e.target.value)}
                     value={address}
@@ -273,7 +273,7 @@ const UserRegister = () => {
                 <label className="block text-sm font-medium leading-5  text-gray-700">
                   Date
                 </label>
-                <div className="mt-1 relative rounded-md shadow-sm">
+                <div className="mt-1  rounded-md shadow-sm">
                   <input
                     type="date"
                     value={date}
@@ -307,7 +307,7 @@ const UserRegister = () => {
                 <label className="block text-sm font-medium leading-5  text-gray-700">
                   Job title
                 </label>
-                <div className="mt-1 relative rounded-md shadow-sm">
+                <div className="mt-1  rounded-md shadow-sm">
                   <input
                     placeholder="Software Engineer"
                     type="text"
@@ -326,7 +326,7 @@ const UserRegister = () => {
                 <label className="block text-sm font-medium leading-5 text-gray-700">
                   Career level
                 </label>
-                <div className="mt-1 relative rounded-md shadow-sm">
+                <div className="mt-1  rounded-md shadow-sm">
                   <select
                     onChange={(e) => setCareelLevel(e.target.value)}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -348,7 +348,7 @@ const UserRegister = () => {
                 <label className="block text-sm font-medium leading-5  text-gray-700">
                   Job Type
                 </label>
-                <div className="mt-1 relative rounded-md shadow-sm">
+                <div className="mt-1  rounded-md shadow-sm">
                   <select
                     onChange={(e) => setJobType(e.target.value)}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -390,7 +390,7 @@ const UserRegister = () => {
                 </label>
               </div>
               {/**PDF FILE**/}
-              <div className="mt-6 relative rounded-md shadow-sm">
+              <div className="mt-6  rounded-md shadow-sm">
                 {errors.cv && (
                   <span className="text-sm text-red-500 font-semibold">
                     {errors.cv}
