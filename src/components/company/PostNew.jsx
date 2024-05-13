@@ -14,6 +14,8 @@ const PostNew = () => {
   const [jobType, setJobType] = useState("");
   const [description, setDescription] = useState("");
   const [error, setError] = useState(""); // State for error message
+  const [skills, setSkills] = useState([]);
+  const [addedSkill, setAddedSkill] = useState();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,7 +41,7 @@ const PostNew = () => {
       job_type: jobType,
       description,
       company_id: id,
-      skills: ["Web", "Node.js", "OOP"],
+      skills
     };
 
     try {
@@ -72,6 +74,17 @@ const PostNew = () => {
         text: "Something went wrong!",
       });
     }
+  };
+
+  const handleNewSikill = () => {
+    console.log(skills.length);
+    if (addedSkill === "" || addedSkill == undefined) {
+      return;
+    }
+    const newSkills = skills;
+    newSkills.push(addedSkill);
+    setSkills(newSkills);
+    setAddedSkill("");
   };
 
   return (
@@ -173,6 +186,39 @@ const PostNew = () => {
           <option value="Freelance">Freelance</option>
         </select>
       </div>
+      {/**SKILLS**/}
+      <div className="mt-6 w-full ">
+        <div className="w-full flex flex-row h-fit">
+          <input
+            type="text"
+            placeholder="Enter Your Skills"
+            className="w-full h-full py-1"
+            onChange={(e) => setAddedSkill(e.target.value)}
+          />
+          <button
+            className="w-fit font-medium text-white whitespace-nowrap h-full py-1 pr-1 rounded-r-lg bg-blue"
+            onClick={handleNewSikill}
+          >
+            ADD SKILL
+          </button>
+        </div>
+
+        <div className="w-full bg-soft-gray mt-3 p-1 rounded-md">
+          <ul className="w-full flex flex-row gap-1 overflow-hidden">
+            {skills?.map((s, i) => {
+              return (
+                <li
+                  key={i}
+                  className="p-1 bg-blue text-white font-medium rounded-lg"
+                >
+                  {s}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </div>
+
       {/* Description */}
       <div className="mb-4">
         <label

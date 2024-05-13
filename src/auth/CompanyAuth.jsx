@@ -6,11 +6,11 @@ const CompanyAuth = ({ children }) => {
   const { role } = useContext(AuthContext);
   const navigate = useNavigate();
   useEffect(() => {
-    if (role != 2) {
+    if (!role || role != 2) {
       return navigate("/notauthorized");
     }
   }, []);
-  
+
   if (role != 2) {
     return navigate("/notauthorized");
   }

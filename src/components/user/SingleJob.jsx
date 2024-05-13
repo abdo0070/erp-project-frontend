@@ -19,7 +19,9 @@ const SingleJob = () => {
         setPost(res.data?.data);
         console.log(res.data?.data);
       })
-      .catch((error) => {});
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
   const handleApplicationApply = () => {
     const user_id = user._id;
@@ -62,11 +64,11 @@ const SingleJob = () => {
         <div className="w-fit flex flex-col items-center p-1">
           <img
             className="w-14 h-14 sm:w-20 sm:h-20 md:w-28 md:h-28 rounded-full"
-            src={post?.company[0].image}
+            src={post?.image}
             alt=""
           />
           <h2 className="font-bold text-slate-700 text-xs sm:text-base rounded-xl">
-            {post?.company[0].name}
+            {post?.name}
           </h2>
         </div>
         <div className="w-10/12 flex flex-col p-2">

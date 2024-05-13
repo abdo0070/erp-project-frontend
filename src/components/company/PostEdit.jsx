@@ -117,7 +117,7 @@ const PostEdit = () => {
           type="number"
           id="expectedSalary"
           defaultValue={curPost?.expected_salary}
-          onChange={(e) =>{
+          onChange={(e) => {
             setExpectedSalary(e.target.value);
             console.log(e.target.value);
           }}
