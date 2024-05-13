@@ -20,9 +20,9 @@ import NotAuth from "./pages/NotAuth";
 import UserAuth from "./auth/UserAuth";
 import CompanyLogin from "./pages/CompanyLogin";
 import CompanyRegister from "./pages/CompanyRegister";
+import PostEdit from "./components/company/PostEdit";
 
 function App() {
-  // Initialize Firebase
   return (
     <BrowserRouter>
       <Header />
@@ -57,6 +57,14 @@ function App() {
               element={
                 <CompanyAuth>
                   <PostNew />
+                </CompanyAuth>
+              }
+            />
+            <Route
+              path="posts/edit/:id"
+              element={
+                <CompanyAuth>
+                  <PostEdit/>
                 </CompanyAuth>
               }
             />

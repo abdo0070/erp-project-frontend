@@ -22,7 +22,9 @@ const PostsIndex = () => {
       .then((res) => {
         setPosts(res.data?.data);
       })
-      .catch((error) => {});
+      .catch((error) => {
+
+      });
   };
   return (
     <div className="flex flex-col h-screen w-full space-y-2">
@@ -106,7 +108,7 @@ const PostsIndex = () => {
                       <Link>
                         <i className="fa-solid fa-eye"></i>
                       </Link>
-                      <Link>
+                      <Link to={`/company/posts/edit/${row._id}`}>
                         <i className="fa-solid fa-pen-to-square"></i>
                       </Link>
                       <button

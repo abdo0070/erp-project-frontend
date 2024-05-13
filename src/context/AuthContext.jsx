@@ -21,7 +21,6 @@ export const AuthProvidor = ({ children }) => {
     setRole(newRole || 0);
     setUser(newUser || null);
     // SAVE THE DATA IN LOCAL STORAGE
-    console.log(newUser, " ", newRole, " ");
     localStorage.setItem("user", JSON.stringify(newUser));
     localStorage.setItem("token", newToken);
     localStorage.setItem("role", newRole || 0);
