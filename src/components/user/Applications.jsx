@@ -22,7 +22,7 @@ const Applications = () => {
       });
   }, []);
   return (
-    <div className="min-h-screen flex flex-col gap-2">
+    <div className="min-h-screen w-10/12 flex flex-col gap-2">
       {applicationsData?.map((c, i) => {
         return <Application key={i} post={c} />;
       })}

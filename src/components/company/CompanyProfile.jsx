@@ -9,7 +9,7 @@ const CompanyProfile = () => {
   }, []);
 
   return (
-    <div className="flex items-center flex-row justify-between h-screen w-10/1">
+    <div className="flex items-center w-10/12 flex-row justify-between h-screen">
       {/**INFO**/}
       <div className="h-full min-w-fit w-10/12 flex flex-col p-4 g-4 md:g-8 bg-white  rounded-3xl">
         <div>

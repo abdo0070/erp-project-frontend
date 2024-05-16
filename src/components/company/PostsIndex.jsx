@@ -27,7 +27,7 @@ const PostsIndex = () => {
       });
   };
   return (
-    <div className="flex flex-col h-screen w-full space-y-2">
+    <div className="flex flex-col h-screen w-10/12 space-y-2">
       <div className="w-full h-fit mt-4 flex justify-end">
         <Link
           to={"/company/posts/new"}

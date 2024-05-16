@@ -87,7 +87,7 @@ const PostEdit = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="w-full max-w-2xl mx-auto bg-white shadow-md rounded-lg p-8 mt-8"
+      className="w-10/12 max-w-2xl mx-auto bg-white shadow-md rounded-lg p-8 mt-8"
     >
       {/* Job Title */}
       <div className="mb-4">

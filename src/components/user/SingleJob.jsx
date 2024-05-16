@@ -57,7 +57,7 @@ const SingleJob = () => {
       });
   };
   return (
-    <div className="h-fit w-full flex-row  space-y-4">
+    <div className="h-fit w-10/12 flex-row  space-y-4">
       {/** MAIN DETAILS SECTION */}
       <div className="flex w-full md:p-4 h-fit flex-row bg-white rounded-xl">
         {/**IMAGE & USERNAME */}

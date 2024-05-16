@@ -9,7 +9,7 @@ const UserProfile = () => {
     setCurUser(user);
   }, []);
   return (
-    <div className="flex items-center flex-row justify-between h-screen w-full">
+    <div className="flex items-center w-10/12 flex-row justify-between h-screen">
       {/**SIDEBARE**/}
       <div className="h-full w-3/12 text-black font-semibold mt-8">
         <button

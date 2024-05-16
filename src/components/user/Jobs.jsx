@@ -21,7 +21,7 @@ const Jobs = () => {
       });
   }, []);
   return (
-    <div className="min-h-screen flex flex-col gap-2">
+    <div className="min-h-screen w-10/12 flex flex-col gap-2">
       {posts?.map((c,i) => {
         return <Job key={i} post={c} />;
       })}

@@ -27,7 +27,6 @@ function App() {
     <BrowserRouter>
       <Header />
       <div className="min-h-screen bg-soft-gray flex justify-center w-full">
-        <div className="w-10/12">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
@@ -130,8 +129,6 @@ function App() {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
-      </div>
-
       <Footer />
     </BrowserRouter>
   );
