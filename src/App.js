@@ -26,108 +26,110 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
-      <div className="min-h-screen bg-soft-gray">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/login" element={<UserLogin />} />
-          <Route path="/register" element={<UserRegister />} />
-          <Route path="/companies/login" element={<CompanyLogin />} />
-          <Route path="/companies/register" element={<CompanyRegister />} />
+      <div className="min-h-screen bg-soft-gray flex justify-center w-full">
+        <div className="w-10/12">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/login" element={<UserLogin />} />
+            <Route path="/register" element={<UserRegister />} />
+            <Route path="/companies/login" element={<CompanyLogin />} />
+            <Route path="/companies/register" element={<CompanyRegister />} />
 
-          <Route path="/company">
-            <Route
-              path=""
-              element={
-                <CompanyAuth>
-                  <Home />
-                </CompanyAuth>
-              }
-            />
-            <Route
-              path="posts"
-              element={
-                <CompanyAuth>
-                  <PostsIndex />
-                </CompanyAuth>
-              }
-            />
-            <Route
-              path="posts/new"
-              element={
-                <CompanyAuth>
-                  <PostNew />
-                </CompanyAuth>
-              }
-            />
-            <Route
-              path="posts/edit/:id"
-              element={
-                <CompanyAuth>
-                  <PostEdit/>
-                </CompanyAuth>
-              }
-            />
-            <Route path="cv/:userId" element={<CvReview />} />
-            <Route
-              path="profile"
-              element={
-                <CompanyAuth>
-                  <CompanyProfile />
-                </CompanyAuth>
-              }
-            />
-          </Route>
+            <Route path="/company">
+              <Route
+                path=""
+                element={
+                  <CompanyAuth>
+                    <Home />
+                  </CompanyAuth>
+                }
+              />
+              <Route
+                path="posts"
+                element={
+                  <CompanyAuth>
+                    <PostsIndex />
+                  </CompanyAuth>
+                }
+              />
+              <Route
+                path="posts/new"
+                element={
+                  <CompanyAuth>
+                    <PostNew />
+                  </CompanyAuth>
+                }
+              />
+              <Route
+                path="posts/edit/:id"
+                element={
+                  <CompanyAuth>
+                    <PostEdit />
+                  </CompanyAuth>
+                }
+              />
+              <Route path="cv/:userId" element={<CvReview />} />
+              <Route
+                path="profile"
+                element={
+                  <CompanyAuth>
+                    <CompanyProfile />
+                  </CompanyAuth>
+                }
+              />
+            </Route>
 
-          <Route path="/user">
-            <Route
-              path=""
-              element={
-                <UserAuth>
-                  <Home />
-                </UserAuth>
-              }
-            />
+            <Route path="/user">
+              <Route
+                path=""
+                element={
+                  <UserAuth>
+                    <Home />
+                  </UserAuth>
+                }
+              />
 
-            <Route path="cv" element={<Cvs />} />
-            <Route path="cv/:userId" element={<CvReview />} />
-            <Route
-              path="jobs"
-              element={
-                <UserAuth>
-                  <Jobs />
-                </UserAuth>
-              }
-            />
-            <Route
-              path="jobs/:jobId"
-              element={
-                <UserAuth>
-                  <SingleJob />
-                </UserAuth>
-              }
-            />
-            <Route
-              path="applications"
-              element={
-                <UserAuth>
-                  <Applications />
-                </UserAuth>
-              }
-            />
-            <Route
-              path="profile"
-              element={
-                <UserAuth>
-                  <UserProfile />
-                </UserAuth>
-              }
-            />
-          </Route>
+              <Route path="cv" element={<Cvs />} />
+              <Route path="cv/:userId" element={<CvReview />} />
+              <Route
+                path="jobs"
+                element={
+                  <UserAuth>
+                    <Jobs />
+                  </UserAuth>
+                }
+              />
+              <Route
+                path="jobs/:jobId"
+                element={
+                  <UserAuth>
+                    <SingleJob />
+                  </UserAuth>
+                }
+              />
+              <Route
+                path="applications"
+                element={
+                  <UserAuth>
+                    <Applications />
+                  </UserAuth>
+                }
+              />
+              <Route
+                path="profile"
+                element={
+                  <UserAuth>
+                    <UserProfile />
+                  </UserAuth>
+                }
+              />
+            </Route>
 
-          <Route path="/notauthorized" element={<NotAuth />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+            <Route path="/notauthorized" element={<NotAuth />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </div>
       </div>
 
       <Footer />

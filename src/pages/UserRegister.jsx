@@ -28,10 +28,6 @@ const UserRegister = () => {
   const hanleSubmit = async () => {
     // Validate input data
     setErrors(validateData());
-    // if (Object.keys(errors).length === 0) {
-    //   return;
-    // }
-    // MAKE THE POST REQUEST .
     try {
       const imageRef = ref(imageDB, `images/users/${image.name}`);
       await uploadBytes(imageRef, image);
@@ -43,6 +39,7 @@ const UserRegister = () => {
       await uploadBytes(CvRef, cv);
       // Get download URL of the uploaded logo
       const CvURL = await getDownloadURL(CvRef);
+      console.log("UPLOADED");
       const newUser = {
         name,
         user_name,
