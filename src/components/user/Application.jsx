@@ -14,8 +14,8 @@ const Application = ({ post }) => {
           Authorization: "Bearer " + token,
         },
       })
-      .then((res) =>{ setCompany(res.data?.data) ; console.log(res);})
-      .catch((err) => console.log(err));
+      .then((res) =>setCompany(res.data?.data))
+      .catch((err) =>{});
   },[]);
   return (
     <div className="p-2 w-full bg-white flex flex-row">

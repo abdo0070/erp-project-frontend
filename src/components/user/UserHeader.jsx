@@ -9,19 +9,19 @@ const UserHeader = () => {
       <div className="w-10/12 h-full flex flex-row justify-between">
         {/** LOGO AND HEADERS LINKS SECTION **/}
         <div className="h-full flex flex-row items-center gap-4 justify-between">
-          <div className="">
+          <div className="sm:w-10 sm:h-10 w-8 h-8">
             <img
               src="/logo.png"
-              className="rounded-full sm:w-10 sm:h-10 w-8 h-8"
+              className="rounded-full w-full h-full"
               alt="logo"
             />
           </div>
-          <div className="h-full flex flex-row items-center gap-4 font-semibold text-xs sm:text-lg cursor-pointer text-white">
+          <div className="h-full flex flex-row items-center gap-4 font-semibold text-xs sm:text-lg hidden sm:flex cursor-pointer text-white">
             <Link className="" to={"/home"}>
               Home
             </Link>
             <Link className="" to={"/user/applications"}>
-              My Applications
+              Applications
             </Link>
             <Link className="" to={"/user/jobs"}>
               Jobs

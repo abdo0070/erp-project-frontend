@@ -21,6 +21,8 @@ import UserAuth from "./auth/UserAuth";
 import CompanyLogin from "./pages/CompanyLogin";
 import CompanyRegister from "./pages/CompanyRegister";
 import PostEdit from "./components/company/PostEdit";
+import About from "./pages/About";
+import PostView from "./components/company/PostView";
 
 function App() {
   return (
@@ -34,6 +36,7 @@ function App() {
             <Route path="/register" element={<UserRegister />} />
             <Route path="/companies/login" element={<CompanyLogin />} />
             <Route path="/companies/register" element={<CompanyRegister />} />
+            <Route path="/about" element={<About />} />
 
             <Route path="/company">
               <Route
@@ -65,6 +68,14 @@ function App() {
                 element={
                   <CompanyAuth>
                     <PostEdit />
+                  </CompanyAuth>
+                }
+              />
+              <Route
+                path="posts/view/:id"
+                element={
+                  <CompanyAuth>
+                    <PostView />
                   </CompanyAuth>
                 }
               />

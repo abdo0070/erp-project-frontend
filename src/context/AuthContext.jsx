@@ -27,13 +27,9 @@ export const AuthProvidor = ({ children }) => {
   };
 
   const refreshToken = () => {
-    const isExp = isExpired(token);
-    if (!isExp) {
-      // updateUser(null);
-      return true;
-    }
-    return false;
+    updateUser(null,0,{});
   };
+
   return (
     <AuthContext.Provider
       value={{ user, token, role, updateUser, refreshToken }}

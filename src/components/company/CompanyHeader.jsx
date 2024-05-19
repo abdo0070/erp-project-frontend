@@ -9,10 +9,10 @@ const CompanyHeader = () => {
       <div className="w-10/12 h-full flex flex-row justify-between">
         {/** LOGO AND HEADERS LINKS SECTION **/}
         <div className="h-full flex flex-row items-center gap-4 justify-between">
-          <div className="">
+          <div className="sm:w-10 sm:h-10 w-8 h-8">
             <img
               src="/logo.png"
-              className="rounded-full sm:w-10 sm:h-10 w-8 h-8"
+              className="rounded-full w-full h-full"
               alt="logo"
             />
           </div>

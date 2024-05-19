@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Cv = ({ cv }) => {
   return (
-    <Link to={`/user/cv/${cv._id}`} className="p-2 w-full bg-white flex flex-row" onClick={() => {
+    <Link to={`/user/cv/${cv._id}`} className="p-2 w-full bg-white flex flex-row hover:bg-slate-100" onClick={() => {
       // GO TO CV REVIEW
     }}>
       {/**IMAGE & NAME SECTION */}

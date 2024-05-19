@@ -35,7 +35,7 @@ const UserLogin = () => {
     }
   };
   return (
-    <div className="w-full h-screen bg-white">
+    <div className="w-full h-screen">
       <div className="w-full h-full min-w-fit flex flex-col items-center justify-center">
         <div className="mt-1 w-8/12 md:w-5/12 min-w-fit p-2 bg-white rounded-xl  h-[25rem] max-h-full flex flex-col border-black border-2">
           <div className="w-full">
@@ -45,7 +45,7 @@ const UserLogin = () => {
           </div>
 
           <div className="flex flex-col gap-4">
-            <div className="w-full flex flex-col font-sans">
+            <form className="w-full flex flex-col font-sans">
               <label htmlFor="" className="p-1 font-medium">
                 Email
               </label>
@@ -55,7 +55,7 @@ const UserLogin = () => {
                 placeholder="Enter your email"
                 onChange={(e) => setEmail(e.target.value)}
               />
-            </div>
+            </form>
             <div className="w-full flex flex-col font-sans">
               <label htmlFor="" className="p-1 font-medium">
                 Password

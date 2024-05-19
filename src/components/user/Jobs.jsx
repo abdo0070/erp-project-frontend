@@ -4,7 +4,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { axiosAPI } from "../../api/axiosAPI";
 
 const Jobs = () => {
-  const { token } = useContext(AuthContext);
+  const { token , refreshToken } = useContext(AuthContext);
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     axiosAPI
@@ -17,11 +17,11 @@ const Jobs = () => {
         setPosts(res.data?.data);
       })
       .catch((err) => {
-        console.log(err);
+        refreshToken();
       });
   }, []);
   return (
-    <div className="min-h-screen w-10/12 flex flex-col gap-2">
+    <div className="min-h-screen w-10/12 flex flex-col mt-2">
       {posts?.map((c,i) => {
         return <Job key={i} post={c} />;
       })}

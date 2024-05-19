@@ -19,13 +19,14 @@ const Cvs = () => {
       })
       .then((res) => {
         setUsersCvs(res.data?.data);
+        console.log(res.data?.data);
       })
       .catch((err) => {
-        refreshToken();
+      //  refreshToken();
       });
   }, []);
   return (
-    <div className="min-h-screen flex flex-col gap-2">
+    <div className="min-h-screen w-10/12 flex flex-col">
       {usersCvs?.map((c, i) => {
         return <Cv cv={c} key={i} />;
       })}

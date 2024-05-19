@@ -105,7 +105,7 @@ const PostsIndex = () => {
                   </td>
                   <td className="p-1 whitespace-nowrap">
                     <div className="flex flex-row space-x-0.5 text-blue">
-                      <Link>
+                      <Link to={`/company/posts/view/${row._id}`}>
                         <i className="fa-solid fa-eye"></i>
                       </Link>
                       <Link to={`/company/posts/edit/${row._id}`}>

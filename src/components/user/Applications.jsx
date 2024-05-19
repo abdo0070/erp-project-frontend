@@ -5,7 +5,7 @@ import { axiosAPI } from "../../api/axiosAPI";
 
 const Applications = () => {
   const [applicationsData, setApplicationsData] = useState([]);
-  const { user, token } = useContext(AuthContext);
+  const { user, token ,refreshToken} = useContext(AuthContext);
   useEffect(() => {
     const id = user._id;
     axiosAPI
@@ -17,8 +17,8 @@ const Applications = () => {
       .then((res) => {
         setApplicationsData(res.data?.data);
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
+        refreshToken()
       });
   }, []);
   return (

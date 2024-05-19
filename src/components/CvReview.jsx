@@ -17,7 +17,6 @@ const CvReview = () => {
         },
       })
       .then((res) => {
-        console.log(res.data);
         setUser(res.data?.data);
       })
       .catch((err) => refreshToken());

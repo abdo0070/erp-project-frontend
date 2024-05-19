@@ -1,15 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 const Job = ({ post }) => {
   const { name, image, title, career_level, location, post_date, skills } = post;
-  useEffect(() => {
-  });
-  const handleOnClick = () => {};
 
   return (
     <Link to={`/user/jobs/${post?._id}`}>
-      <div className="p-2 w-full bg-white flex flex-row rounded-md">
+      <div className="p-2 w-full bg-white flex flex-row rounded-md my-2">
         {/**IMAGE & NAME SECTION */}
         <div className="w-2/12 min-w-fit flex-col justify-center flex items-center">
           <img

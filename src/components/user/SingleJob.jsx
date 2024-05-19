@@ -6,8 +6,9 @@ import Swal from "sweetalert2";
 
 const SingleJob = () => {
   const { jobId } = useParams();
-  const [post, setPost] = useState([]);
-  const { token, user } = useContext(AuthContext);
+  const [post, setPost] = useState(null);  // Initialize as null
+  const { token, user, refreshToken } = useContext(AuthContext);
+
   useEffect(() => {
     axiosAPI
       .get(`jobs/${jobId}`, {
@@ -17,15 +18,14 @@ const SingleJob = () => {
       })
       .then((res) => {
         setPost(res.data?.data);
-        console.log(res.data?.data);
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
+        refreshToken();
       });
-  }, []);
+  }, [jobId, token, refreshToken]);
+
   const handleApplicationApply = () => {
     const user_id = user._id;
-    console.log(user_id, " ", jobId);
     axiosAPI
       .post(
         "/applications",
@@ -43,7 +43,7 @@ const SingleJob = () => {
       .then(() => {
         Swal.fire({
           title: "Success",
-          text: "Your Application has been done successfuly .",
+          text: "Your Application has been done successfully.",
           icon: "success",
         });
       })
@@ -56,28 +56,51 @@ const SingleJob = () => {
         });
       });
   };
+
+  // Render loading or not found state if post is not yet loaded
+  if (!post) {
+    return <div>Loading...</div>;
+  }
+
+  // Destructure to simplify access and add safety checks
+  const {
+    company = [],
+    title,
+    post_date,
+    expected_salary,
+    career_level,
+    location,
+    job_type,
+    description,
+    veiwed_num,
+    applied_num,
+    skills = [],
+  } = post;
+
+  const companyInfo = company[0] || {};
+
   return (
-    <div className="h-fit w-10/12 flex-row  space-y-4">
+    <div className="h-fit w-10/12 flex-row space-y-4">
       {/** MAIN DETAILS SECTION */}
       <div className="flex w-full md:p-4 h-fit flex-row bg-white rounded-xl">
-        {/**IMAGE & USERNAME */}
+        {/** IMAGE & USERNAME */}
         <div className="w-fit flex flex-col items-center p-1">
           <img
             className="w-14 h-14 sm:w-20 sm:h-20 md:w-28 md:h-28 rounded-full"
-            src={post?.image}
-            alt=""
+            src={companyInfo.image || 'default_image_url'} // Provide a fallback URL if needed
+            alt={companyInfo.name || 'Company'}
           />
           <h2 className="font-bold text-slate-700 text-xs sm:text-base rounded-xl">
-            {post?.name}
+            {companyInfo.name || 'Company Name'}
           </h2>
         </div>
         <div className="w-10/12 flex flex-col p-2">
           <h2 className="text-blue text-xs sm:text-lg md:text-2xl font-bold">
-            {post?.title}
+            {title}
           </h2>
           <div className="flex text-gray-600 mt-1 flex-col text-[10px] md:text-base font-medium rounded-xl">
-            <span>23 Applications | 4 Viewed </span>
-            <span>posted at : {post?.post_date?.slice(0, 10)}</span>
+            <span>{applied_num || 0} Applications | {veiwed_num || 0} Viewed</span>
+            <span>Posted at: {post_date?.slice(0, 10)}</span>
           </div>
         </div>
         <div className="flex items-start mt-2 mr-1.5 sm:mr-3">
@@ -89,45 +112,41 @@ const SingleJob = () => {
           </button>
         </div>
       </div>
-      {/**INFO */}
+      {/** INFO */}
       <div className="bg-white p-1 md:p-4 rounded-xl">
         <h2 className="font-bold text-blue text-[14px] sm:text-base md:text-xl">
           JOB INFO
         </h2>
         <div className="flex text-gray-800 flex-col text-sm md:text-base font-medium rounded-xl">
-          <span>Expected Salary : {post?.expected_salary} EGP</span>
-          <span>Career-level : {post?.career_level}</span>
-          <span>Location : {post?.location}</span>
-          <span>Job Type : {post?.job_type} </span>
+          <span>Expected Salary: {expected_salary} EGP</span>
+          <span>Career-level: {career_level}</span>
+          <span>Location: {location}</span>
+          <span>Job Type: {job_type}</span>
         </div>
       </div>
-
-      {/** DESCRIPTION SECTION SECTION */}
+      {/** DESCRIPTION SECTION */}
       <div className="bg-white w-full h-fit p-1 md:p-4 rounded-xl">
         <h2 className="p-1 font-bold text-blue text-[14px] sm:text-base md:text-xl">
           Description
         </h2>
         <p className="bg-soft-gray p-1 md:p-2 rounded-2xl sm:text-sm md:text-lg text-[10px] font-serif">
-          {post?.description || "No Description"}
+          {description || "No Description"}
         </p>
       </div>
-
-      {/**SKILLS */}
+      {/** SKILLS */}
       <div className="bg-white p-1 md:p-4 rounded-xl">
         <h2 className="p-1 font-bold text-blue text-[14px] sm:text-base md:text-xl">
           NEEDED SKILLS
         </h2>
         <div className="flex flex-row w-full">
-          {post?.skills?.map((s, i) => {
-            return (
-              <button
-                key={i}
-                className="p-1 md:p-2 text-white m-0.5 font-medium text-[10px]  rounded-lg bg-blue"
-              >
-                {s}
-              </button>
-            );
-          })}
+          {skills.map((s, i) => (
+            <button
+              key={i}
+              className="p-1 md:p-2 text-white m-0.5 font-medium text-[10px] rounded-lg bg-blue"
+            >
+              {s}
+            </button>
+          ))}
         </div>
       </div>
     </div>

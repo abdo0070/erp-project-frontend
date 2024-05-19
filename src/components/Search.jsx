@@ -1,15 +1,17 @@
 import React, { useContext, useState } from "react";
 import { SearchContext } from "../context/SearchContext";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 const Search = () => {
   const [query, setQuery] = useState("");
   const { UpdateQ } = useContext(SearchContext);
+  const {token , role} = useContext(AuthContext);
   const navigate = useNavigate();
   const handleJobSearch = (e) => {
     e.preventDefault();
     // UPDATE THE QUERY IN SEARCH CONTEXT
-    UpdateQ(query);
+    UpdateQ(query,token,role);
     // NAVIGATE THE USER TO users
     navigate("/user/cv");
   };
